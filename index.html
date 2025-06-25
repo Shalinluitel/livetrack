@@ -594,6 +594,182 @@
         </div>
       </main>
     </div>
+
+    <!-- Bank Accounts Screen -->
+    <div id="bank-accounts-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Connected Bank Accounts</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="toggleConnectBank()">
+            + Connect Account
+          </button>
+        </div>
+      </header>
+
+      <div id="connect-bank-interface" style="display: none">
+        <div class="card">
+          <h3>Connect Your Bank Account</h3>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Securely connect your bank account to automatically track income and
+            expenses in real-time.
+          </p>
+
+          <input
+            type="text"
+            class="plaid-search"
+            placeholder="Search for your bank..."
+            id="bank-search"
+          />
+
+          <div class="bank-list">
+            <div class="bank-option" onclick="connectBank('Chase Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏦</div>
+              <div>Chase Bank</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Bank of America')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏛️</div>
+              <div>Bank of America</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Wells Fargo')">
+              <div style="font-size: 24px; margin-bottom: 8px">🐎</div>
+              <div>Wells Fargo</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Capital One')">
+              <div style="font-size: 24px; margin-bottom: 8px">💳</div>
+              <div>Capital One</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Citi Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏢</div>
+              <div>Citi Bank</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('US Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🇺🇸</div>
+              <div>US Bank</div>
+            </div>
+          </div>
+
+          <button class="btn secondary" onclick="toggleConnectBank()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <main>
+        <div id="connected-accounts">
+          <!-- Connected accounts will be populated here -->
+        </div>
+
+        <div
+          id="no-accounts"
+          class="connect-bank-card"
+          onclick="toggleConnectBank()"
+        >
+          <div class="connect-icon">🏦</div>
+          <h3>Connect Your First Bank Account</h3>
+          <p style="color: var(--text-secondary)">
+            Securely link your bank account using Plaid to automatically track
+            your income and expenses in real-time.
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Investments Screen -->
+    <div id="investments-screen" class="screen">
+      <header class="investment-header">
+        <div class="transactions-title">Investment Portfolio</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="toggleAddInvestment()">
+            + Add Investment
+          </button>
+        </div>
+      </header>
+
+      <div class="investment-summary">
+        <div class="investment-card">
+          <div class="card-title">Total Portfolio Value</div>
+          <div class="card-value" id="portfolio-value">$0</div>
+          <div class="card-sub">Across all investments</div>
+        </div>
+        <div class="investment-card">
+          <div class="card-title">Total Gain/Loss</div>
+          <div class="card-value" id="portfolio-change">$0</div>
+          <div class="card-sub">Since inception</div>
+        </div>
+        <div class="investment-card">
+          <div class="card-title">Portfolio Diversity</div>
+          <div class="card-value" id="portfolio-diversity">0</div>
+          <div class="card-sub">Asset types</div>
+        </div>
+      </div>
+
+      <div id="add-investment-form" class="add-investment-form">
+        <h3>Add New Investment</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="investment-symbol">Symbol/Name</label>
+            <input
+              type="text"
+              id="investment-symbol"
+              placeholder="e.g., AAPL, Bitcoin"
+            />
+          </div>
+          <div class="form-group">
+            <label for="investment-type">Asset Type</label>
+            <select id="investment-type">
+              <option value="stock">Stock</option>
+              <option value="etf">ETF</option>
+              <option value="crypto">Cryptocurrency</option>
+              <option value="bond">Bond</option>
+              <option value="real-estate">Real Estate</option>
+              <option value="commodity">Commodity</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="investment-shares">Shares/Quantity</label>
+            <input
+              type="number"
+              id="investment-shares"
+              placeholder="0"
+              step="0.001"
+            />
+          </div>
+          <div class="form-group">
+            <label for="investment-price">Purchase Price</label>
+            <input
+              type="number"
+              id="investment-price"
+              placeholder="0.00"
+              step="0.01"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="investment-date">Purchase Date</label>
+          <input type="date" id="investment-date" />
+        </div>
+        <div style="display: flex; gap: var(--spacing-md)">
+          <button class="btn" onclick="addInvestment()">Add Investment</button>
+          <button class="btn secondary" onclick="toggleAddInvestment()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <main>
+        <div class="section-title">Your Investments</div>
+        <div id="investments-list">
+          <!-- Investments will be populated here -->
+        </div>
+      </main>
+    </div>
     <nav class="nav-bar">
       <div class="nav-item active" data-screen="dashboard">Dashboard</div>
       <div class="nav-item" data-screen="transactions">Transactions</div>
