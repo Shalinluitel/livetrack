@@ -2183,7 +2183,7 @@
         });
         document
           .querySelector(`[data-screen="${screenName}"]`)
-          .classList.add("active");
+          ?.classList.add("active");
 
         // Load screen-specific content
         if (screenName === "transactions") {
@@ -2192,6 +2192,8 @@
           renderBankAccounts();
         } else if (screenName === "investments") {
           renderInvestments();
+        } else if (screenName === "income-setup") {
+          loadIncomeSettings();
         }
       }
 
