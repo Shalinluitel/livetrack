@@ -1,298 +1,487 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Finance Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* Color Palette */
-      --primary-brand: #4ADE80;
-      --primary-brand-secondary: #22C55E;
-      --accent: #FBBF24;
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-tertiary: #334155;
-      --bg-card: #1E293B;
-      --text-primary: #FFFFFF;
-      --text-secondary: #94A3B8;
-      --text-muted: #64748B;
-      --text-accent: #4ADE80;
-      --status-success: #10B981;
-      --status-warning: #F59E0B;
-      --status-error: #EF4444;
-      --status-info: #3B82F6;
-      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
-      --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
-      --shadow-glow: 0 0 20px rgba(74, 222, 128, 0.3);
-      /* Typography */
-      --font-primary: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui;
-      --font-size-xs: 12px;
-      --font-size-sm: 14px;
-      --font-size-base: 16px;
-      --font-size-lg: 18px;
-      --font-size-xl: 20px;
-      --font-size-2xl: 24px;
-      --font-size-3xl: 32px;
-      --font-size-4xl: 36px;
-      --font-weight-light: 300;
-      --font-weight-regular: 400;
-      --font-weight-medium: 500;
-      --font-weight-semibold: 600;
-      --font-weight-bold: 700;
-      /* Spacing */
-      --spacing-xs: 4px;
-      --spacing-sm: 8px;
-      --spacing-md: 12px;
-      --spacing-lg: 16px;
-      --spacing-xl: 20px;
-      --spacing-2xl: 24px;
-      --spacing-3xl: 32px;
-      --spacing-4xl: 40px;
-      --spacing-5xl: 48px;
-      /* Border Radius */
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 20px;
-      --radius-2xl: 24px;
-      --radius-full: 9999px;
-      /* Transition */
-      --transition: all 0.2s ease;
-    }
-    body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-primary);
-      margin: 0;
-      min-height: 100vh;
-      padding: var(--spacing-lg);
-      box-sizing: border-box;
-    }
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-xl) var(--spacing-lg);
-      margin-bottom: var(--spacing-lg);
-    }
-    .dashboard-title {
-      font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--text-primary);
-    }
-    .quick-actions {
-      display: flex;
-      gap: var(--spacing-md);
-    }
-    .btn {
-      border: none;
-      border-radius: var(--radius-md);
-      font-weight: var(--font-weight-medium);
-      font-size: var(--font-size-base);
-      padding: var(--spacing-md) var(--spacing-xl);
-      background: var(--primary-brand);
-      color: var(--bg-primary);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .btn.secondary {
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-    }
-    .btn:hover {
-      background: var(--primary-brand-secondary);
-    }
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--spacing-lg);
-    }
-    @media (min-width: 700px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Finance Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* Color Palette */
+        --primary-brand: #4ade80;
+        --primary-brand-secondary: #22c55e;
+        --accent: #fbbf24;
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --bg-card: #1e293b;
+        --text-primary: #ffffff;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --text-accent: #4ade80;
+        --status-success: #10b981;
+        --status-warning: #f59e0b;
+        --status-error: #ef4444;
+        --status-info: #3b82f6;
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+        --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+        --shadow-glow: 0 0 20px rgba(74, 222, 128, 0.3);
+        /* Typography */
+        --font-primary:
+          "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui;
+        --font-size-xs: 12px;
+        --font-size-sm: 14px;
+        --font-size-base: 16px;
+        --font-size-lg: 18px;
+        --font-size-xl: 20px;
+        --font-size-2xl: 24px;
+        --font-size-3xl: 32px;
+        --font-size-4xl: 36px;
+        --font-weight-light: 300;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+        /* Spacing */
+        --spacing-xs: 4px;
+        --spacing-sm: 8px;
+        --spacing-md: 12px;
+        --spacing-lg: 16px;
+        --spacing-xl: 20px;
+        --spacing-2xl: 24px;
+        --spacing-3xl: 32px;
+        --spacing-4xl: 40px;
+        --spacing-5xl: 48px;
+        /* Border Radius */
+        --radius-sm: 6px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+        --radius-2xl: 24px;
+        --radius-full: 9999px;
+        /* Transition */
+        --transition: all 0.2s ease;
       }
-    }
-    @media (min-width: 1100px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr 1fr 1fr;
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-primary);
+        margin: 0;
+        min-height: 100vh;
+        padding: var(--spacing-lg);
+        box-sizing: border-box;
       }
-    }
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-    .card-title {
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-semibold);
-      color: var(--text-secondary);
-    }
-    .card-value {
-      font-size: var(--font-size-3xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--primary-brand);
-    }
-    .card-sub {
-      font-size: var(--font-size-sm);
-      color: var(--text-muted);
-    }
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: var(--bg-tertiary);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-      margin-top: var(--spacing-xs);
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--primary-brand);
-      border-radius: var(--radius-full);
-      transition: width 0.3s ease;
-    }
-    .income-real-time {
-      font-size: var(--font-size-xl);
-      color: var(--accent);
-      font-weight: var(--font-weight-bold);
-      margin-top: var(--spacing-sm);
-    }
-    .nav-bar {
-      position: fixed;
-      left: var(--spacing-lg);
-      right: var(--spacing-lg);
-      bottom: var(--spacing-lg);
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      justify-content: space-around;
-      padding: var(--spacing-md) var(--spacing-lg);
-      z-index: 100;
-    }
-    .nav-item {
-      padding: var(--spacing-md);
-      border-radius: var(--radius-md);
-      color: var(--text-secondary);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .nav-item.active, .nav-item:hover {
-      background: var(--primary-brand);
-      color: var(--bg-primary);
-    }
-  </style>
-</head>
-<body>
-  <header class="dashboard-header">
-    <div class="dashboard-title">Net Worth Dashboard</div>
-    <div class="quick-actions">
-      <button class="btn" onclick="alert('Add Transaction')">+ Add Transaction</button>
-      <button class="btn secondary" onclick="alert('View Reports')">View Reports</button>
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-xl) var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+      }
+      .dashboard-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+      }
+      .quick-actions {
+        display: flex;
+        gap: var(--spacing-md);
+      }
+      .btn {
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-base);
+        padding: var(--spacing-md) var(--spacing-xl);
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .btn.secondary {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+      }
+      .btn:hover {
+        background: var(--primary-brand-secondary);
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+      @media (min-width: 700px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1100px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+      .card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+      .card-title {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+      }
+      .card-value {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--primary-brand);
+      }
+      .card-sub {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+      }
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+        margin-top: var(--spacing-xs);
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: var(--primary-brand);
+        border-radius: var(--radius-full);
+        transition: width 0.3s ease;
+      }
+      .income-real-time {
+        font-size: var(--font-size-xl);
+        color: var(--accent);
+        font-weight: var(--font-weight-bold);
+        margin-top: var(--spacing-sm);
+      }
+      .nav-bar {
+        position: fixed;
+        left: var(--spacing-lg);
+        right: var(--spacing-lg);
+        bottom: var(--spacing-lg);
+        background: var(--bg-card);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        justify-content: space-around;
+        padding: var(--spacing-md) var(--spacing-lg);
+        z-index: 100;
+      }
+      .nav-item {
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .nav-item.active,
+      .nav-item:hover {
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+      }
+      .screen {
+        display: none;
+      }
+      .screen.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Notice for better user experience -->
+    <div
+      id="upgrade-notice"
+      style="
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+        padding: var(--spacing-md);
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        border-radius: var(--radius-md);
+      "
+    >
+      <strong>💡 Enhanced Version Available!</strong>
+      <span style="margin: 0 var(--spacing-md)"
+        >Access the full-featured finance dashboard with complete navigation,
+        income setup, and more.</span
+      >
+      <button
+        onclick="window.location.href='./'"
+        style="
+          background: var(--bg-primary);
+          color: var(--primary-brand);
+          border: none;
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius-sm);
+          margin-left: var(--spacing-md);
+          cursor: pointer;
+        "
+      >
+        Go to Full Dashboard
+      </button>
+      <button
+        onclick="document.getElementById('upgrade-notice').style.display='none'"
+        style="
+          background: transparent;
+          color: var(--bg-primary);
+          border: 1px solid var(--bg-primary);
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius-sm);
+          margin-left: var(--spacing-sm);
+          cursor: pointer;
+        "
+      >
+        Stay Here
+      </button>
     </div>
-  </header>
-  <main>
-    <div class="dashboard-grid">
-      <div class="card">
-        <div class="card-title">Net Worth</div>
-        <div class="card-value" id="netWorth">$0</div>
-        <div class="card-sub">Assets - Liabilities</div>
+    <header class="dashboard-header">
+      <div class="dashboard-title">Net Worth Dashboard</div>
+      <div class="quick-actions">
+        <button class="btn" onclick="switchScreen('transactions')">
+          + Add Transaction
+        </button>
+        <button class="btn secondary" onclick="switchScreen('settings')">
+          View Reports
+        </button>
       </div>
-      <div class="card">
-        <div class="card-title">Real-Time Income</div>
-        <div class="income-real-time" id="realTimeIncome">$0.00</div>
-        <div class="card-sub">Earnings since 9:00 AM</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Monthly Savings Rate</div>
-        <div class="card-value" id="savingsRate">0%</div>
-        <div class="progress-bar">
-          <div class="progress-bar-fill" id="savingsProgress" style="width: 0%"></div>
+    </header>
+    <main>
+      <!-- Dashboard Screen -->
+      <div id="dashboard-screen" class="screen active">
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-title">Net Worth</div>
+            <div class="card-value" id="netWorth">$0</div>
+            <div class="card-sub">Assets - Liabilities</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Real-Time Income</div>
+            <div class="income-real-time" id="realTimeIncome">$0.00</div>
+            <div class="card-sub">Earnings since 9:00 AM</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Monthly Savings Rate</div>
+            <div class="card-value" id="savingsRate">0%</div>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                id="savingsProgress"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="card-sub">Goal: 20%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Assets</div>
+            <div class="card-value" id="assets">$0</div>
+            <div class="card-sub">Bank, Investments, Cash</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Liabilities</div>
+            <div class="card-value" id="liabilities">$0</div>
+            <div class="card-sub">Loans, Credit Cards</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Spending This Month</div>
+            <div class="card-value" id="spending">$0</div>
+            <div class="card-sub">
+              Compared to last month: <span id="spendingChange">0%</span>
+            </div>
+          </div>
         </div>
-        <div class="card-sub">Goal: 20%</div>
       </div>
-      <div class="card">
-        <div class="card-title">Total Assets</div>
-        <div class="card-value" id="assets">$0</div>
-        <div class="card-sub">Bank, Investments, Cash</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Total Liabilities</div>
-        <div class="card-value" id="liabilities">$0</div>
-        <div class="card-sub">Loans, Credit Cards</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Spending This Month</div>
-        <div class="card-value" id="spending">$0</div>
-        <div class="card-sub">Compared to last month: <span id="spendingChange">0%</span></div>
-      </div>
-    </div>
-  </main>
-  <nav class="nav-bar">
-    <div class="nav-item active">Dashboard</div>
-    <div class="nav-item">Transactions</div>
-    <div class="nav-item">Assets</div>
-    <div class="nav-item">Liabilities</div>
-    <div class="nav-item">Settings</div>
-  </nav>
-  <script>
-    // Sample Data
-    const sampleData = {
-      assets: 25000,
-      liabilities: 8000,
-      monthlyIncome: 4000,
-      monthlySpending: 2200,
-      lastMonthSpending: 2100,
-      savingsGoal: 0.2, // 20%
-      hourlyRate: 10,
-      workStart: '09:00',
-      workEnd: '17:00',
-    };
 
-    function formatCurrency(val) {
-      return '$' + val.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    }
+      <!-- Transactions Screen -->
+      <div id="transactions-screen" class="screen">
+        <header class="dashboard-header">
+          <div class="dashboard-title">Transactions</div>
+          <div class="quick-actions">
+            <button
+              class="btn"
+              onclick="alert('Add new transaction functionality coming soon!')"
+            >
+              + Add Transaction
+            </button>
+          </div>
+        </header>
+        <div class="card">
+          <div class="card-title">Recent Transactions</div>
+          <div class="card-sub">Transaction history will appear here</div>
+        </div>
+      </div>
 
-    function updateDashboard() {
-      // Net Worth
-      const netWorth = sampleData.assets - sampleData.liabilities;
-      document.getElementById('netWorth').textContent = formatCurrency(netWorth);
-      document.getElementById('assets').textContent = formatCurrency(sampleData.assets);
-      document.getElementById('liabilities').textContent = formatCurrency(sampleData.liabilities);
-      // Savings Rate
-      const savings = sampleData.monthlyIncome - sampleData.monthlySpending;
-      const savingsRate = savings / sampleData.monthlyIncome;
-      document.getElementById('savingsRate').textContent = Math.round(savingsRate * 100) + '%';
-      document.getElementById('savingsProgress').style.width = Math.min(100, Math.round(savingsRate * 100)) + '%';
-      // Spending
-      document.getElementById('spending').textContent = formatCurrency(sampleData.monthlySpending);
-      const spendingChange = ((sampleData.monthlySpending - sampleData.lastMonthSpending) / sampleData.lastMonthSpending) * 100;
-      document.getElementById('spendingChange').textContent = (spendingChange > 0 ? '+' : '') + spendingChange.toFixed(1) + '%';
-    }
+      <!-- Assets Screen -->
+      <div id="assets-screen" class="screen">
+        <header class="dashboard-header">
+          <div class="dashboard-title">Assets</div>
+          <div class="quick-actions">
+            <button
+              class="btn"
+              onclick="alert('Add new asset functionality coming soon!')"
+            >
+              + Add Asset
+            </button>
+          </div>
+        </header>
+        <div class="card">
+          <div class="card-title">Your Assets</div>
+          <div class="card-sub">Asset management will appear here</div>
+        </div>
+      </div>
 
-    function updateRealTimeIncome() {
-      const now = new Date();
-      const today = now.toISOString().split('T')[0];
-      const start = new Date(today + 'T' + sampleData.workStart + ':00');
-      const end = new Date(today + 'T' + sampleData.workEnd + ':00');
-      let earned = 0;
-      if (now > start) {
-        const elapsed = Math.min(now, end) - start;
-        earned = Math.max(0, elapsed / (1000 * 60 * 60)) * sampleData.hourlyRate;
+      <!-- Liabilities Screen -->
+      <div id="liabilities-screen" class="screen">
+        <header class="dashboard-header">
+          <div class="dashboard-title">Liabilities</div>
+          <div class="quick-actions">
+            <button
+              class="btn"
+              onclick="alert('Add new liability functionality coming soon!')"
+            >
+              + Add Liability
+            </button>
+          </div>
+        </header>
+        <div class="card">
+          <div class="card-title">Your Liabilities</div>
+          <div class="card-sub">Liability management will appear here</div>
+        </div>
+      </div>
+
+      <!-- Settings Screen -->
+      <div id="settings-screen" class="screen">
+        <header class="dashboard-header">
+          <div class="dashboard-title">Settings</div>
+        </header>
+        <div class="card">
+          <div class="card-title">Application Settings</div>
+          <div class="card-sub">Settings and preferences will appear here</div>
+        </div>
+      </div>
+    </main>
+    <nav class="nav-bar">
+      <div class="nav-item active" data-screen="dashboard">Dashboard</div>
+      <div class="nav-item" data-screen="transactions">Transactions</div>
+      <div class="nav-item" data-screen="assets">Assets</div>
+      <div class="nav-item" data-screen="liabilities">Liabilities</div>
+      <div class="nav-item" data-screen="settings">Settings</div>
+    </nav>
+    <script>
+      // Sample Data
+      const sampleData = {
+        assets: 25000,
+        liabilities: 8000,
+        monthlyIncome: 4000,
+        monthlySpending: 2200,
+        lastMonthSpending: 2100,
+        savingsGoal: 0.2, // 20%
+        hourlyRate: 10,
+        workStart: "09:00",
+        workEnd: "17:00",
+      };
+
+      function formatCurrency(val) {
+        return (
+          "$" +
+          val.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        );
       }
-      document.getElementById('realTimeIncome').textContent = formatCurrency(earned);
-    }
 
-    updateDashboard();
-    updateRealTimeIncome();
-    setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
-  </script>
-</body>
-</html> 
+      function updateDashboard() {
+        // Net Worth
+        const netWorth = sampleData.assets - sampleData.liabilities;
+        document.getElementById("netWorth").textContent =
+          formatCurrency(netWorth);
+        document.getElementById("assets").textContent = formatCurrency(
+          sampleData.assets,
+        );
+        document.getElementById("liabilities").textContent = formatCurrency(
+          sampleData.liabilities,
+        );
+        // Savings Rate
+        const savings = sampleData.monthlyIncome - sampleData.monthlySpending;
+        const savingsRate = savings / sampleData.monthlyIncome;
+        document.getElementById("savingsRate").textContent =
+          Math.round(savingsRate * 100) + "%";
+        document.getElementById("savingsProgress").style.width =
+          Math.min(100, Math.round(savingsRate * 100)) + "%";
+        // Spending
+        document.getElementById("spending").textContent = formatCurrency(
+          sampleData.monthlySpending,
+        );
+        const spendingChange =
+          ((sampleData.monthlySpending - sampleData.lastMonthSpending) /
+            sampleData.lastMonthSpending) *
+          100;
+        document.getElementById("spendingChange").textContent =
+          (spendingChange > 0 ? "+" : "") + spendingChange.toFixed(1) + "%";
+      }
+
+      function updateRealTimeIncome() {
+        const now = new Date();
+        const today = now.toISOString().split("T")[0];
+        const start = new Date(today + "T" + sampleData.workStart + ":00");
+        const end = new Date(today + "T" + sampleData.workEnd + ":00");
+        let earned = 0;
+        if (now > start) {
+          const elapsed = Math.min(now, end) - start;
+          earned =
+            Math.max(0, elapsed / (1000 * 60 * 60)) * sampleData.hourlyRate;
+        }
+        document.getElementById("realTimeIncome").textContent =
+          formatCurrency(earned);
+      }
+
+      updateDashboard();
+      updateRealTimeIncome();
+      setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+
+      // Navigation Functions
+      function switchScreen(screenName) {
+        // Hide all screens
+        document.querySelectorAll(".screen").forEach((screen) => {
+          screen.classList.remove("active");
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + "-screen");
+        if (targetScreen) {
+          targetScreen.classList.add("active");
+        }
+
+        // Update navigation
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-screen="${screenName}"]`)
+          ?.classList.add("active");
+      }
+
+      // Add navigation event listeners
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const screen = this.getAttribute("data-screen");
+          switchScreen(screen);
+        });
+      });
+    </script>
+  </body>
+</html>
