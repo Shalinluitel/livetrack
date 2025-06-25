@@ -1304,6 +1304,228 @@
       </main>
     </div>
 
+    <!-- Income Setup Screen -->
+    <div id="income-setup-screen" class="screen">
+      <div class="income-setup-container">
+        <div class="breadcrumb">
+          <span class="breadcrumb-link" onclick="switchScreen('dashboard')"
+            >Dashboard</span
+          >
+          <span>></span>
+          <span>Income Setup</span>
+        </div>
+
+        <div class="setup-step">
+          <h2>💼 Primary Income Configuration</h2>
+
+          <h3>How do you receive your primary income?</h3>
+          <div class="radio-group">
+            <div class="radio-option" onclick="selectIncomeType('hourly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="hourly"
+                id="hourly"
+              />
+              <label for="hourly">
+                <div>Hourly Rate</div>
+                <div class="description">Get paid based on hours worked</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectIncomeType('monthly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="monthly"
+                id="monthly"
+              />
+              <label for="monthly">
+                <div>Fixed Monthly Salary</div>
+                <div class="description">
+                  Receive the same amount each month
+                </div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectIncomeType('yearly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="yearly"
+                id="yearly"
+              />
+              <label for="yearly">
+                <div>Annual Salary</div>
+                <div class="description">Salary divided over 12 months</div>
+              </label>
+            </div>
+          </div>
+
+          <div id="income-amount-section" style="display: none">
+            <div class="form-row">
+              <label id="income-amount-label">Amount:</label>
+              <input
+                type="number"
+                id="income-amount"
+                placeholder="0.00"
+                step="0.01"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <h3>Tax Information</h3>
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="is-taxed"
+              onchange="toggleTaxSection()"
+            />
+            <label for="is-taxed">This income is subject to taxes</label>
+          </div>
+
+          <div id="tax-section" style="display: none">
+            <div class="form-row">
+              <label for="tax-rate">Tax Rate (%):</label>
+              <input
+                type="number"
+                id="tax-rate"
+                placeholder="25"
+                step="0.1"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+
+          <h3>Work Schedule</h3>
+          <div class="time-inputs">
+            <div class="time-input-group">
+              <label for="work-start">Start Time:</label>
+              <input type="time" id="work-start" value="09:00" />
+            </div>
+            <div class="time-input-group">
+              <label for="work-end">End Time:</label>
+              <input type="time" id="work-end" value="17:00" />
+            </div>
+          </div>
+
+          <h3>Work Days</h3>
+          <div class="weekdays-grid">
+            <div class="weekday-btn" data-day="0" onclick="toggleWorkDay(0)">
+              Sun
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="1"
+              onclick="toggleWorkDay(1)"
+            >
+              Mon
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="2"
+              onclick="toggleWorkDay(2)"
+            >
+              Tue
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="3"
+              onclick="toggleWorkDay(3)"
+            >
+              Wed
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="4"
+              onclick="toggleWorkDay(4)"
+            >
+              Thu
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="5"
+              onclick="toggleWorkDay(5)"
+            >
+              Fri
+            </div>
+            <div class="weekday-btn" data-day="6" onclick="toggleWorkDay(6)">
+              Sat
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-step">
+          <h2>💰 Additional Income Sources</h2>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Add any additional income sources like freelance work, investments,
+            or side gigs.
+          </p>
+
+          <div id="additional-incomes-container">
+            <!-- Additional income sources will be added here dynamically -->
+          </div>
+
+          <button class="btn secondary" onclick="addAdditionalIncome()">
+            + Add Income Source
+          </button>
+        </div>
+
+        <div class="setup-step">
+          <h2>📊 Income Summary</h2>
+          <div class="income-summary">
+            <h4>Your Income Configuration</h4>
+            <div class="summary-item">
+              <span class="summary-label">Primary Income Type:</span>
+              <span class="summary-value" id="summary-income-type"
+                >Not set</span
+              >
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Gross Income:</span>
+              <span class="summary-value" id="summary-gross-income">$0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tax Rate:</span>
+              <span class="summary-value" id="summary-tax-rate">0%</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Net Hourly Rate:</span>
+              <span class="summary-value" id="summary-net-hourly">$0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Work Schedule:</span>
+              <span class="summary-value" id="summary-schedule">Not set</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Additional Income Sources:</span>
+              <span class="summary-value" id="summary-additional">0</span>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: var(--spacing-lg);
+              display: flex;
+              gap: var(--spacing-md);
+            "
+          >
+            <button class="btn" onclick="saveIncomeSettings()">
+              Save Configuration
+            </button>
+            <button class="btn secondary" onclick="switchScreen('dashboard')">
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Contact Us Screen -->
     <div id="contact-us-screen" class="screen">
       <div class="breadcrumb">
@@ -1773,7 +1995,7 @@
           amount: -4.25,
           type: "expense",
           date: "2025-06-24",
-          icon: "☕",
+          icon: "��",
         },
         {
           id: 4,
