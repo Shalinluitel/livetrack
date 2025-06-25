@@ -406,6 +406,36 @@
       updateDashboard();
       updateRealTimeIncome();
       setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+
+      // Navigation Functions
+      function switchScreen(screenName) {
+        // Hide all screens
+        document.querySelectorAll(".screen").forEach((screen) => {
+          screen.classList.remove("active");
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + "-screen");
+        if (targetScreen) {
+          targetScreen.classList.add("active");
+        }
+
+        // Update navigation
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-screen="${screenName}"]`)
+          ?.classList.add("active");
+      }
+
+      // Add navigation event listeners
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const screen = this.getAttribute("data-screen");
+          switchScreen(screen);
+        });
+      });
     </script>
   </body>
 </html>
