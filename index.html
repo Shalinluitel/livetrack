@@ -680,6 +680,186 @@
       .breadcrumb-link:hover {
         text-decoration: underline;
       }
+
+      /* Income Setup Styles */
+      .income-setup-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: var(--spacing-lg);
+      }
+      .setup-step {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-2xl);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .setup-step h2 {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-lg) 0;
+      }
+      .setup-step h3 {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+      }
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+      .radio-option:hover {
+        background: var(--bg-tertiary);
+      }
+      .radio-option.selected {
+        background: var(--bg-tertiary);
+        border-color: var(--primary-brand);
+      }
+      .radio-option input[type="radio"] {
+        margin-right: var(--spacing-md);
+        accent-color: var(--primary-brand);
+      }
+      .radio-option label {
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        cursor: pointer;
+        flex: 1;
+      }
+      .radio-option .description {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        margin-top: var(--spacing-xs);
+      }
+      .form-row {
+        display: flex;
+        gap: var(--spacing-md);
+        align-items: center;
+        margin-bottom: var(--spacing-md);
+      }
+      .form-row label {
+        color: var(--text-secondary);
+        font-size: var(--font-size-base);
+        min-width: 120px;
+      }
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .checkbox-group input[type="checkbox"] {
+        accent-color: var(--primary-brand);
+      }
+      .checkbox-group label {
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        cursor: pointer;
+      }
+      .time-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .time-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+      .time-input-group label {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+      }
+      .weekdays-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-lg);
+      }
+      .weekday-btn {
+        padding: var(--spacing-sm);
+        background: var(--bg-secondary);
+        border: 2px solid transparent;
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+      }
+      .weekday-btn:hover {
+        background: var(--bg-tertiary);
+      }
+      .weekday-btn.selected {
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+        border-color: var(--primary-brand);
+      }
+      .income-summary {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+      }
+      .income-summary h4 {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-md) 0;
+      }
+      .income-summary .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-xs);
+        font-size: var(--font-size-sm);
+      }
+      .income-summary .summary-label {
+        color: var(--text-secondary);
+      }
+      .income-summary .summary-value {
+        color: var(--text-primary);
+        font-weight: var(--font-weight-medium);
+      }
+      .additional-income {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+      }
+      .additional-income h4 {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-md) 0;
+      }
+      .remove-income-btn {
+        background: var(--status-error);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xs);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .remove-income-btn:hover {
+        background: #dc2626;
+      }
     </style>
   </head>
   <body>
@@ -1124,6 +1304,228 @@
       </main>
     </div>
 
+    <!-- Income Setup Screen -->
+    <div id="income-setup-screen" class="screen">
+      <div class="income-setup-container">
+        <div class="breadcrumb">
+          <span class="breadcrumb-link" onclick="switchScreen('dashboard')"
+            >Dashboard</span
+          >
+          <span>></span>
+          <span>Income Setup</span>
+        </div>
+
+        <div class="setup-step">
+          <h2>💼 Primary Income Configuration</h2>
+
+          <h3>How do you receive your primary income?</h3>
+          <div class="radio-group">
+            <div class="radio-option" onclick="selectIncomeType('hourly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="hourly"
+                id="hourly"
+              />
+              <label for="hourly">
+                <div>Hourly Rate</div>
+                <div class="description">Get paid based on hours worked</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectIncomeType('monthly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="monthly"
+                id="monthly"
+              />
+              <label for="monthly">
+                <div>Fixed Monthly Salary</div>
+                <div class="description">
+                  Receive the same amount each month
+                </div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectIncomeType('yearly')">
+              <input
+                type="radio"
+                name="income-type"
+                value="yearly"
+                id="yearly"
+              />
+              <label for="yearly">
+                <div>Annual Salary</div>
+                <div class="description">Salary divided over 12 months</div>
+              </label>
+            </div>
+          </div>
+
+          <div id="income-amount-section" style="display: none">
+            <div class="form-row">
+              <label id="income-amount-label">Amount:</label>
+              <input
+                type="number"
+                id="income-amount"
+                placeholder="0.00"
+                step="0.01"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <h3>Tax Information</h3>
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="is-taxed"
+              onchange="toggleTaxSection()"
+            />
+            <label for="is-taxed">This income is subject to taxes</label>
+          </div>
+
+          <div id="tax-section" style="display: none">
+            <div class="form-row">
+              <label for="tax-rate">Tax Rate (%):</label>
+              <input
+                type="number"
+                id="tax-rate"
+                placeholder="25"
+                step="0.1"
+                min="0"
+                max="100"
+              />
+            </div>
+          </div>
+
+          <h3>Work Schedule</h3>
+          <div class="time-inputs">
+            <div class="time-input-group">
+              <label for="work-start">Start Time:</label>
+              <input type="time" id="work-start" value="09:00" />
+            </div>
+            <div class="time-input-group">
+              <label for="work-end">End Time:</label>
+              <input type="time" id="work-end" value="17:00" />
+            </div>
+          </div>
+
+          <h3>Work Days</h3>
+          <div class="weekdays-grid">
+            <div class="weekday-btn" data-day="0" onclick="toggleWorkDay(0)">
+              Sun
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="1"
+              onclick="toggleWorkDay(1)"
+            >
+              Mon
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="2"
+              onclick="toggleWorkDay(2)"
+            >
+              Tue
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="3"
+              onclick="toggleWorkDay(3)"
+            >
+              Wed
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="4"
+              onclick="toggleWorkDay(4)"
+            >
+              Thu
+            </div>
+            <div
+              class="weekday-btn selected"
+              data-day="5"
+              onclick="toggleWorkDay(5)"
+            >
+              Fri
+            </div>
+            <div class="weekday-btn" data-day="6" onclick="toggleWorkDay(6)">
+              Sat
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-step">
+          <h2>💰 Additional Income Sources</h2>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Add any additional income sources like freelance work, investments,
+            or side gigs.
+          </p>
+
+          <div id="additional-incomes-container">
+            <!-- Additional income sources will be added here dynamically -->
+          </div>
+
+          <button class="btn secondary" onclick="addAdditionalIncome()">
+            + Add Income Source
+          </button>
+        </div>
+
+        <div class="setup-step">
+          <h2>📊 Income Summary</h2>
+          <div class="income-summary">
+            <h4>Your Income Configuration</h4>
+            <div class="summary-item">
+              <span class="summary-label">Primary Income Type:</span>
+              <span class="summary-value" id="summary-income-type"
+                >Not set</span
+              >
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Gross Income:</span>
+              <span class="summary-value" id="summary-gross-income">$0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tax Rate:</span>
+              <span class="summary-value" id="summary-tax-rate">0%</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Net Hourly Rate:</span>
+              <span class="summary-value" id="summary-net-hourly">$0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Work Schedule:</span>
+              <span class="summary-value" id="summary-schedule">Not set</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Additional Income Sources:</span>
+              <span class="summary-value" id="summary-additional">0</span>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: var(--spacing-lg);
+              display: flex;
+              gap: var(--spacing-md);
+            "
+          >
+            <button class="btn" onclick="saveIncomeSettings()">
+              Save Configuration
+            </button>
+            <button class="btn secondary" onclick="switchScreen('dashboard')">
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Contact Us Screen -->
     <div id="contact-us-screen" class="screen">
       <div class="breadcrumb">
@@ -1548,7 +1950,7 @@
     <nav class="nav-bar">
       <div class="nav-item active" data-screen="dashboard">Dashboard</div>
       <div class="nav-item" data-screen="transactions">Transactions</div>
-      <div class="nav-item" data-screen="bank-accounts">Bank Accounts</div>
+      <div class="nav-item" data-screen="income-setup">Income Setup</div>
       <div class="nav-item" data-screen="investments">Investments</div>
       <div class="nav-item" data-screen="settings">Settings</div>
     </nav>
@@ -1593,7 +1995,7 @@
           amount: -4.25,
           type: "expense",
           date: "2025-06-24",
-          icon: "☕",
+          icon: "��",
         },
         {
           id: 4,
@@ -1781,7 +2183,7 @@
         });
         document
           .querySelector(`[data-screen="${screenName}"]`)
-          .classList.add("active");
+          ?.classList.add("active");
 
         // Load screen-specific content
         if (screenName === "transactions") {
@@ -1790,6 +2192,8 @@
           renderBankAccounts();
         } else if (screenName === "investments") {
           renderInvestments();
+        } else if (screenName === "income-setup") {
+          loadIncomeSettings();
         }
       }
 
@@ -2115,18 +2519,62 @@
       }
 
       function updateRealTimeIncome() {
+        const saved = localStorage.getItem("incomeSettings");
+        let settings = saved ? JSON.parse(saved) : null;
+
+        if (!settings || !settings.type || !settings.amount) {
+          // Fall back to sample data if no settings saved
+          settings = {
+            type: "hourly",
+            amount: 10,
+            isTaxed: true,
+            taxRate: 25,
+            workStart: "09:00",
+            workEnd: "17:00",
+            workDays: [1, 2, 3, 4, 5]
+          };
+        }
+
         const now = new Date();
-        const today = now.toISOString().split("T")[0];
-        const start = new Date(today + "T" + sampleData.workStart + ":00");
-        const end = new Date(today + "T" + sampleData.workEnd + ":00");
+        const today = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+        // Check if today is a work day
+        if (!settings.workDays.includes(today)) {
+          document.getElementById("realTimeIncome").textContent = "$0.00";
+          return;
+        }
+
+        const todayStr = now.toISOString().split("T")[0];
+        const start = new Date(todayStr + "T" + settings.workStart + ":00");
+        const end = new Date(todayStr + "T" + settings.workEnd + ":00");
+
         let earned = 0;
+
         if (now > start) {
           const elapsed = Math.min(now, end) - start;
-          earned =
-            Math.max(0, elapsed / (1000 * 60 * 60)) * sampleData.hourlyRate;
+          const hoursWorked = Math.max(0, elapsed / (1000 * 60 * 60));
+
+          // Calculate hourly rate based on income type
+          let hourlyRate = 0;
+          if (settings.type === "hourly") {
+            hourlyRate = settings.amount;
+          } else if (settings.type === "monthly") {
+            const hoursPerMonth = settings.workDays.length * 4 * 8;
+            hourlyRate = settings.amount / hoursPerMonth;
+          } else if (settings.type === "yearly") {
+            const hoursPerYear = settings.workDays.length * 52 * 8;
+            hourlyRate = settings.amount / hoursPerYear;
+          }
+
+          // Apply tax if applicable
+          if (settings.isTaxed) {
+            hourlyRate = hourlyRate * (1 - settings.taxRate / 100);
+          }
+
+          earned = hoursWorked * hourlyRate;
         }
-        document.getElementById("realTimeIncome").textContent =
-          formatCurrency(earned);
+
+        document.getElementById("realTimeIncome").textContent = formatCurrency(earned);
       }
 
       // Event Listeners
@@ -2140,6 +2588,7 @@
               screen === "transactions" ||
               screen === "bank-accounts" ||
               screen === "investments" ||
+              screen === "income-setup" ||
               screen === "settings"
             ) {
               switchScreen(screen);
@@ -2414,6 +2863,354 @@
           `Opening ${platform.charAt(0).toUpperCase() + platform.slice(1)}...\n\nWould redirect to: ${urls[platform]}`,
         );
       }
+
+      // Income Setup Functions
+      let incomeSettings = {
+        type: null, // 'hourly', 'monthly', 'yearly'
+        amount: 0,
+        isTaxed: false,
+        taxRate: 0,
+        workStart: "09:00",
+        workEnd: "17:00",
+        workDays: [1, 2, 3, 4, 5], // Monday to Friday
+        additionalIncomes: [],
+      };
+
+      let additionalIncomeCounter = 0;
+
+      function selectIncomeType(type) {
+        // Update radio selection
+        document.querySelectorAll(".radio-option").forEach((option) => {
+          option.classList.remove("selected");
+        });
+        event.target.closest(".radio-option").classList.add("selected");
+
+        // Update radio input
+        document.getElementById(type).checked = true;
+
+        incomeSettings.type = type;
+
+        // Show amount input section
+        const amountSection = document.getElementById("income-amount-section");
+        const amountLabel = document.getElementById("income-amount-label");
+
+        amountSection.style.display = "block";
+
+        switch (type) {
+          case "hourly":
+            amountLabel.textContent = "Hourly Rate ($):";
+            document.getElementById("income-amount").placeholder = "25.00";
+            break;
+          case "monthly":
+            amountLabel.textContent = "Monthly Salary ($):";
+            document.getElementById("income-amount").placeholder = "5000.00";
+            break;
+          case "yearly":
+            amountLabel.textContent = "Annual Salary ($):";
+            document.getElementById("income-amount").placeholder = "60000.00";
+            break;
+        }
+
+        updateIncomeSummary();
+      }
+
+      function toggleTaxSection() {
+        const isTaxed = document.getElementById("is-taxed").checked;
+        const taxSection = document.getElementById("tax-section");
+
+        incomeSettings.isTaxed = isTaxed;
+        taxSection.style.display = isTaxed ? "block" : "none";
+
+        if (!isTaxed) {
+          incomeSettings.taxRate = 0;
+          document.getElementById("tax-rate").value = "";
+        }
+
+        updateIncomeSummary();
+      }
+
+      function toggleWorkDay(dayIndex) {
+        const dayBtn = document.querySelector(`[data-day="${dayIndex}"]`);
+
+        if (incomeSettings.workDays.includes(dayIndex)) {
+          // Remove day
+          incomeSettings.workDays = incomeSettings.workDays.filter(
+            (d) => d !== dayIndex,
+          );
+          dayBtn.classList.remove("selected");
+        } else {
+          // Add day
+          incomeSettings.workDays.push(dayIndex);
+          dayBtn.classList.add("selected");
+        }
+
+        updateIncomeSummary();
+      }
+
+      function addAdditionalIncome() {
+        additionalIncomeCounter++;
+        const container = document.getElementById(
+          "additional-incomes-container",
+        );
+
+        const incomeDiv = document.createElement("div");
+        incomeDiv.className = "additional-income";
+        incomeDiv.id = `additional-income-${additionalIncomeCounter}`;
+
+        incomeDiv.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+            <h4>Income Source #${additionalIncomeCounter}</h4>
+            <button class="remove-income-btn" onclick="removeAdditionalIncome(${additionalIncomeCounter})">Remove</button>
+          </div>
+
+          <div class="form-row">
+            <label>Description:</label>
+            <input type="text" id="desc-${additionalIncomeCounter}" placeholder="e.g., Freelance work, Dividends, etc.">
+          </div>
+
+          <div class="form-row">
+            <label>Amount ($):</label>
+            <input type="number" id="amount-${additionalIncomeCounter}" placeholder="0.00" step="0.01" min="0">
+          </div>
+
+          <div class="radio-group">
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'one-time')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="one-time">
+              <label>
+                <div>One-time Income</div>
+                <div class="description">Received once (e.g., bonus, gift)</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'weekly')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="weekly">
+              <label>
+                <div>Weekly Recurring</div>
+                <div class="description">Received every week</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'monthly')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="monthly">
+              <label>
+                <div>Monthly Recurring</div>
+                <div class="description">Received every month</div>
+              </label>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(incomeDiv);
+        updateIncomeSummary();
+      }
+
+      function removeAdditionalIncome(id) {
+        const incomeDiv = document.getElementById(`additional-income-${id}`);
+        if (incomeDiv) {
+          incomeDiv.remove();
+          updateIncomeSummary();
+        }
+      }
+
+      function selectAdditionalIncomeType(incomeId, type) {
+        const container = document.getElementById(
+          `additional-income-${incomeId}`,
+        );
+        const radioOptions = container.querySelectorAll(".radio-option");
+
+        radioOptions.forEach((option) => option.classList.remove("selected"));
+        event.target.closest(".radio-option").classList.add("selected");
+
+        // Update the radio input
+        const radioInput = event.target
+          .closest(".radio-option")
+          .querySelector('input[type="radio"]');
+        radioInput.checked = true;
+
+        updateIncomeSummary();
+      }
+
+      function updateIncomeSummary() {
+        // Get current values
+        const amount = parseFloat(
+          document.getElementById("income-amount")?.value || 0,
+        );
+        const taxRate = parseFloat(
+          document.getElementById("tax-rate")?.value || 0,
+        );
+        const workStart =
+          document.getElementById("work-start")?.value || "09:00";
+        const workEnd = document.getElementById("work-end")?.value || "17:00";
+
+        // Update settings
+        incomeSettings.amount = amount;
+        incomeSettings.taxRate = taxRate;
+        incomeSettings.workStart = workStart;
+        incomeSettings.workEnd = workEnd;
+
+        // Calculate values
+        let grossHourlyRate = 0;
+        let grossIncome = amount;
+
+        if (incomeSettings.type === "hourly") {
+          grossHourlyRate = amount;
+        } else if (incomeSettings.type === "monthly") {
+          // Assume 160 working hours per month (8 hours * 5 days * 4 weeks)
+          const hoursPerMonth = incomeSettings.workDays.length * 4 * 8;
+          grossHourlyRate = amount / hoursPerMonth;
+        } else if (incomeSettings.type === "yearly") {
+          // Assume 52 weeks, working days per week * 8 hours
+          const hoursPerYear = incomeSettings.workDays.length * 52 * 8;
+          grossHourlyRate = amount / hoursPerYear;
+          grossIncome = amount / 12; // Monthly equivalent
+        }
+
+        const netHourlyRate = grossHourlyRate * (1 - taxRate / 100);
+
+        // Update summary display
+        document.getElementById("summary-income-type").textContent =
+          incomeSettings.type
+            ? incomeSettings.type.charAt(0).toUpperCase() +
+              incomeSettings.type.slice(1)
+            : "Not set";
+
+        document.getElementById("summary-gross-income").textContent =
+          incomeSettings.type === "yearly"
+            ? formatCurrency(amount) + "/year"
+            : incomeSettings.type === "monthly"
+              ? formatCurrency(amount) + "/month"
+              : formatCurrency(amount) + "/hour";
+
+        document.getElementById("summary-tax-rate").textContent = taxRate + "%";
+        document.getElementById("summary-net-hourly").textContent =
+          formatCurrency(netHourlyRate) + "/hour";
+
+        // Work schedule summary
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const workDayNames = incomeSettings.workDays
+          .map((d) => dayNames[d])
+          .join(", ");
+        document.getElementById("summary-schedule").textContent =
+          `${workStart} - ${workEnd}, ${workDayNames}`;
+
+        // Additional income sources count
+        const additionalCount =
+          document.querySelectorAll(".additional-income").length;
+        document.getElementById("summary-additional").textContent =
+          additionalCount;
+      }
+
+      function saveIncomeSettings() {
+        // Validate required fields
+        if (!incomeSettings.type) {
+          alert("Please select an income type");
+          return;
+        }
+
+        const amount = parseFloat(
+          document.getElementById("income-amount")?.value || 0,
+        );
+        if (amount <= 0) {
+          alert("Please enter a valid income amount");
+          return;
+        }
+
+        // Update settings with current form values
+        incomeSettings.amount = amount;
+        incomeSettings.taxRate = parseFloat(
+          document.getElementById("tax-rate")?.value || 0,
+        );
+        incomeSettings.workStart = document.getElementById("work-start").value;
+        incomeSettings.workEnd = document.getElementById("work-end").value;
+
+        // Collect additional income sources
+        incomeSettings.additionalIncomes = [];
+        document.querySelectorAll(".additional-income").forEach((incomeDiv) => {
+          const id = incomeDiv.id.split("-")[2];
+          const description =
+            document.getElementById(`desc-${id}`)?.value || "";
+          const amount = parseFloat(
+            document.getElementById(`amount-${id}`)?.value || 0,
+          );
+          const typeInput = incomeDiv.querySelector(
+            'input[type="radio"]:checked',
+          );
+
+          if (description && amount > 0 && typeInput) {
+            incomeSettings.additionalIncomes.push({
+              description,
+              amount,
+              type: typeInput.value,
+            });
+          }
+        });
+
+        // Save to localStorage
+        localStorage.setItem("incomeSettings", JSON.stringify(incomeSettings));
+
+        alert("Income settings saved successfully!");
+        switchScreen("dashboard");
+
+        // Update the real-time income calculation
+        updateRealTimeIncome();
+      }
+
+      function loadIncomeSettings() {
+        const saved = localStorage.getItem("incomeSettings");
+        if (saved) {
+          incomeSettings = JSON.parse(saved);
+
+          // Update form with saved values
+          if (incomeSettings.type) {
+            document.getElementById(incomeSettings.type).checked = true;
+            document
+              .querySelector(`#${incomeSettings.type}`)
+              .closest(".radio-option")
+              .classList.add("selected");
+
+            // Show and populate amount section
+            document.getElementById("income-amount-section").style.display =
+              "block";
+            document.getElementById("income-amount").value =
+              incomeSettings.amount;
+          }
+
+          document.getElementById("is-taxed").checked = incomeSettings.isTaxed;
+          if (incomeSettings.isTaxed) {
+            document.getElementById("tax-section").style.display = "block";
+            document.getElementById("tax-rate").value = incomeSettings.taxRate;
+          }
+
+          document.getElementById("work-start").value =
+            incomeSettings.workStart;
+          document.getElementById("work-end").value = incomeSettings.workEnd;
+
+          // Update work days
+          document.querySelectorAll(".weekday-btn").forEach((btn) => {
+            const day = parseInt(btn.dataset.day);
+            if (incomeSettings.workDays.includes(day)) {
+              btn.classList.add("selected");
+            } else {
+              btn.classList.remove("selected");
+            }
+          });
+
+          updateIncomeSummary();
+        }
+      }
+
+
+        // Income setup form input listeners
+        document.addEventListener('input', function(e) {
+          if (e.target.id === 'income-amount' || e.target.id === 'tax-rate' ||
+              e.target.id === 'work-start' || e.target.id === 'work-end') {
+            if (typeof updateIncomeSummary === 'function') {
+              updateIncomeSummary();
+            }
+          }
+        });
+            updateIncomeSummary();
+          }
+        });
+      });
     </script>
   </body>
 </html>
