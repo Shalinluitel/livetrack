@@ -3213,40 +3213,6 @@
           formatCurrency(earned);
       }
 
-      // Load income settings when income setup screen is accessed
-      function switchScreen(screenName) {
-        // Hide all screens
-        document.querySelectorAll(".screen").forEach((screen) => {
-          screen.classList.remove("active");
-        });
-
-        // Show target screen
-        const targetScreen = document.getElementById(screenName + "-screen");
-        if (targetScreen) {
-          targetScreen.classList.add("active");
-          currentScreen = screenName;
-        }
-
-        // Update navigation
-        document.querySelectorAll(".nav-item").forEach((item) => {
-          item.classList.remove("active");
-        });
-        document
-          .querySelector(`[data-screen="${screenName}"]`)
-          ?.classList.add("active");
-
-        // Load screen-specific content
-        if (screenName === "transactions") {
-          renderTransactions();
-        } else if (screenName === "bank-accounts") {
-          renderBankAccounts();
-        } else if (screenName === "investments") {
-          renderInvestments();
-        } else if (screenName === "income-setup") {
-          loadIncomeSettings();
-        }
-      }
-
       // Add event listeners for income setup form inputs
       document.addEventListener("DOMContentLoaded", function () {
         // Add existing event listeners...
