@@ -2531,7 +2531,7 @@
             taxRate: 25,
             workStart: "09:00",
             workEnd: "17:00",
-            workDays: [1, 2, 3, 4, 5],
+            workDays: [1, 2, 3, 4, 5]
           };
         }
 
@@ -2574,8 +2574,7 @@
           earned = hoursWorked * hourlyRate;
         }
 
-        document.getElementById("realTimeIncome").textContent =
-          formatCurrency(earned);
+        document.getElementById("realTimeIncome").textContent = formatCurrency(earned);
       }
 
       // Event Listeners
@@ -3198,18 +3197,16 @@
         }
       }
 
-      // Add event listeners for income setup form inputs
-      document.addEventListener("DOMContentLoaded", function () {
-        // Add existing event listeners...
 
-        // Income amount input listener
-        document.addEventListener("input", function (e) {
-          if (
-            e.target.id === "income-amount" ||
-            e.target.id === "tax-rate" ||
-            e.target.id === "work-start" ||
-            e.target.id === "work-end"
-          ) {
+        // Income setup form input listeners
+        document.addEventListener('input', function(e) {
+          if (e.target.id === 'income-amount' || e.target.id === 'tax-rate' ||
+              e.target.id === 'work-start' || e.target.id === 'work-end') {
+            if (typeof updateIncomeSummary === 'function') {
+              updateIncomeSummary();
+            }
+          }
+        });
             updateIncomeSummary();
           }
         });
