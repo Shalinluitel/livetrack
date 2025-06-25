@@ -1,0 +1,364 @@
+{
+  "designSystem": {
+    "name": "Modern Finance Mobile App",
+    "version": "1.0.0",
+    "platform": "mobile",
+    "category": "financial_dashboard"
+  },
+  "colorPalette": {
+    "primary": {
+      "brand": "#4ADE80",
+      "brandSecondary": "#22C55E",
+      "accent": "#FBBF24"
+    },
+    "background": {
+      "primary": "#0F172A",
+      "secondary": "#1E293B",
+      "tertiary": "#334155",
+      "card": "#1E293B",
+      "overlay": "rgba(30, 41, 59, 0.95)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#94A3B8",
+      "muted": "#64748B",
+      "accent": "#4ADE80"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    },
+    "chart": {
+      "primary": "#4ADE80",
+      "secondary": "#3B82F6",
+      "tertiary": "#F59E0B",
+      "quaternary": "#EF4444",
+      "line": "#22C55E"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui",
+      "secondary": "SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui",
+      "mono": "SF Mono, Monaco, Consolas, monospace"
+    },
+    "fontSize": {
+      "xs": "12px",
+      "sm": "14px",
+      "base": "16px",
+      "lg": "18px",
+      "xl": "20px",
+      "2xl": "24px",
+      "3xl": "32px",
+      "4xl": "36px"
+    },
+    "fontWeight": {
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "lineHeight": {
+      "tight": 1.2,
+      "normal": 1.4,
+      "relaxed": 1.6
+    }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "2xl": "24px",
+    "3xl": "32px",
+    "4xl": "40px",
+    "5xl": "48px"
+  },
+  "borderRadius": {
+    "none": "0px",
+    "sm": "6px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "2xl": "24px",
+    "full": "9999px"
+  },
+  "shadows": {
+    "sm": "0 2px 4px rgba(0, 0, 0, 0.1)",
+    "md": "0 4px 8px rgba(0, 0, 0, 0.15)",
+    "lg": "0 8px 16px rgba(0, 0, 0, 0.2)",
+    "glow": "0 0 20px rgba(74, 222, 128, 0.3)"
+  },
+  "components": {
+    "card": {
+      "base": {
+        "backgroundColor": "background.card",
+        "borderRadius": "borderRadius.lg",
+        "padding": "spacing.lg",
+        "shadow": "shadows.md"
+      },
+      "variants": {
+        "elevated": {
+          "shadow": "shadows.lg",
+          "border": "1px solid rgba(255, 255, 255, 0.1)"
+        },
+        "flat": {
+          "shadow": "none",
+          "backgroundColor": "background.secondary"
+        }
+      }
+    },
+    "button": {
+      "base": {
+        "borderRadius": "borderRadius.md",
+        "fontWeight": "fontWeight.medium",
+        "fontSize": "fontSize.base",
+        "padding": "spacing.md spacing.xl",
+        "transition": "all 0.2s ease"
+      },
+      "variants": {
+        "primary": {
+          "backgroundColor": "primary.brand",
+          "color": "background.primary",
+          "hover": {
+            "backgroundColor": "primary.brandSecondary"
+          }
+        },
+        "secondary": {
+          "backgroundColor": "background.tertiary",
+          "color": "text.primary",
+          "hover": {
+            "backgroundColor": "background.secondary"
+          }
+        },
+        "ghost": {
+          "backgroundColor": "transparent",
+          "color": "text.secondary",
+          "hover": {
+            "backgroundColor": "background.tertiary"
+          }
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "spacing.sm spacing.md",
+          "fontSize": "fontSize.sm"
+        },
+        "md": {
+          "padding": "spacing.md spacing.xl",
+          "fontSize": "fontSize.base"
+        },
+        "lg": {
+          "padding": "spacing.lg spacing.2xl",
+          "fontSize": "fontSize.lg"
+        },
+        "icon": {
+          "padding": "spacing.md",
+          "width": "40px",
+          "height": "40px",
+          "borderRadius": "borderRadius.full"
+        }
+      }
+    },
+    "input": {
+      "base": {
+        "backgroundColor": "background.secondary",
+        "borderRadius": "borderRadius.md",
+        "padding": "spacing.md spacing.lg",
+        "fontSize": "fontSize.base",
+        "color": "text.primary",
+        "border": "1px solid transparent",
+        "transition": "all 0.2s ease"
+      },
+      "states": {
+        "focus": {
+          "border": "1px solid primary.brand",
+          "boxShadow": "shadows.glow"
+        },
+        "error": {
+          "border": "1px solid status.error"
+        }
+      }
+    },
+    "navigationBar": {
+      "base": {
+        "backgroundColor": "background.card",
+        "padding": "spacing.md spacing.lg",
+        "borderRadius": "borderRadius.xl",
+        "shadow": "shadows.md",
+        "position": "fixed",
+        "bottom": "spacing.lg",
+        "left": "spacing.lg",
+        "right": "spacing.lg"
+      },
+      "item": {
+        "padding": "spacing.md",
+        "borderRadius": "borderRadius.md",
+        "transition": "all 0.2s ease"
+      },
+      "activeItem": {
+        "backgroundColor": "primary.brand",
+        "color": "background.primary"
+      }
+    },
+    "chart": {
+      "container": {
+        "backgroundColor": "background.card",
+        "borderRadius": "borderRadius.lg",
+        "padding": "spacing.lg"
+      },
+      "lineChart": {
+        "strokeWidth": "2px",
+        "strokeColor": "chart.primary",
+        "fillGradient": "linear-gradient(180deg, rgba(74, 222, 128, 0.2) 0%, rgba(74, 222, 128, 0) 100%)"
+      },
+      "barChart": {
+        "borderRadius": "borderRadius.sm",
+        "colors": ["chart.primary", "chart.secondary", "chart.tertiary", "chart.quaternary"]
+      },
+      "donutChart": {
+        "strokeWidth": "8px",
+        "colors": ["chart.primary", "chart.secondary", "chart.tertiary", "chart.quaternary"]
+      }
+    },
+    "progressBar": {
+      "base": {
+        "height": "8px",
+        "backgroundColor": "background.tertiary",
+        "borderRadius": "borderRadius.full",
+        "overflow": "hidden"
+      },
+      "fill": {
+        "backgroundColor": "primary.brand",
+        "borderRadius": "borderRadius.full",
+        "transition": "width 0.3s ease"
+      }
+    },
+    "badge": {
+      "base": {
+        "fontSize": "fontSize.xs",
+        "fontWeight": "fontWeight.medium",
+        "padding": "spacing.xs spacing.sm",
+        "borderRadius": "borderRadius.full"
+      },
+      "variants": {
+        "success": {
+          "backgroundColor": "status.success",
+          "color": "text.primary"
+        },
+        "warning": {
+          "backgroundColor": "status.warning",
+          "color": "background.primary"
+        },
+        "error": {
+          "backgroundColor": "status.error",
+          "color": "text.primary"
+        }
+      }
+    }
+  },
+  "layout": {
+    "screen": {
+      "backgroundColor": "background.primary",
+      "padding": "spacing.lg",
+      "minHeight": "100vh"
+    },
+    "header": {
+      "padding": "spacing.xl spacing.lg",
+      "marginBottom": "spacing.lg"
+    },
+    "grid": {
+      "gap": "spacing.lg",
+      "columns": {
+        "mobile": 1,
+        "tablet": 2,
+        "desktop": 3
+      }
+    },
+    "bottomSheet": {
+      "backgroundColor": "background.card",
+      "borderRadius": "borderRadius.xl borderRadius.xl 0 0",
+      "padding": "spacing.xl spacing.lg",
+      "maxHeight": "80vh"
+    }
+  },
+  "animations": {
+    "transitions": {
+      "fast": "0.15s ease",
+      "normal": "0.2s ease",
+      "slow": "0.3s ease"
+    },
+    "springs": {
+      "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "smooth": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "keyframes": {
+      "slideUp": {
+        "from": { "transform": "translateY(100%)", "opacity": 0 },
+        "to": { "transform": "translateY(0)", "opacity": 1 }
+      },
+      "fadeIn": {
+        "from": { "opacity": 0 },
+        "to": { "opacity": 1 }
+      },
+      "scaleIn": {
+        "from": { "transform": "scale(0.95)", "opacity": 0 },
+        "to": { "transform": "scale(1)", "opacity": 1 }
+      }
+    }
+  },
+  "patterns": {
+    "cardLayout": {
+      "description": "Primary content containers with rounded corners and subtle shadows",
+      "usage": "Main content areas, form containers, chart containers"
+    },
+    "glassomorphism": {
+      "description": "Semi-transparent overlays with backdrop blur effects",
+      "usage": "Modal overlays, floating elements, navigation bars"
+    },
+    "progressiveDisclosure": {
+      "description": "Expandable sections that reveal more detail on interaction",
+      "usage": "Transaction lists, settings panels, detailed views"
+    },
+    "statusIndicators": {
+      "description": "Color-coded visual cues for different states and categories",
+      "usage": "Account status, transaction types, performance metrics"
+    }
+  },
+  "accessibility": {
+    "contrast": {
+      "minimum": "4.5:1",
+      "enhanced": "7:1"
+    },
+    "focusIndicator": {
+      "color": "primary.brand",
+      "width": "2px",
+      "style": "solid",
+      "offset": "2px"
+    },
+    "touchTarget": {
+      "minimum": "44px",
+      "recommended": "48px"
+    }
+  },
+  "guidelines": {
+    "principles": [
+      "Dark-first design with high contrast for readability",
+      "Consistent use of green accent color for positive financial indicators",
+      "Rounded corners and subtle shadows for modern, approachable feel",
+      "Clear visual hierarchy with appropriate spacing and typography",
+      "Interactive elements should provide clear feedback states"
+    ],
+    "composition": [
+      "Cards should have consistent padding and border radius",
+      "Charts and data visualizations should use the defined color palette",
+      "Navigation elements should be easily accessible and clearly labeled",
+      "Content should be organized in logical groups with appropriate spacing",
+      "Interactive elements should be large enough for touch interaction"
+    ]
+  }
+}
