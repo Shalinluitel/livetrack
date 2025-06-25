@@ -193,69 +193,1364 @@
         background: var(--primary-brand);
         color: var(--bg-primary);
       }
+      .screen {
+        display: none;
+      }
+      .screen.active {
+        display: block;
+      }
+      .transactions-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-lg);
+      }
+      .transactions-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+      }
+      .transaction-item {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-md);
+        transition: var(--transition);
+      }
+      .transaction-item:hover {
+        box-shadow: var(--shadow-lg);
+      }
+      .transaction-details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+      .transaction-description {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+      }
+      .transaction-category {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .transaction-date {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+      }
+      .transaction-amount {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-bold);
+      }
+      .transaction-amount.income {
+        color: var(--status-success);
+      }
+      .transaction-amount.expense {
+        color: var(--status-error);
+      }
+      .transaction-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: var(--spacing-md);
+        font-size: var(--font-size-lg);
+      }
+      .transaction-icon.income {
+        background: var(--status-success);
+        color: var(--bg-primary);
+      }
+      .transaction-icon.expense {
+        background: var(--status-error);
+        color: var(--text-primary);
+      }
+      .transaction-icon.transfer {
+        background: var(--status-info);
+        color: var(--text-primary);
+      }
+      .transaction-left {
+        display: flex;
+        align-items: center;
+      }
+      .filter-buttons {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+      }
+      .filter-btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        border: none;
+        border-radius: var(--radius-md);
+        background: var(--bg-tertiary);
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .filter-btn.active {
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+      }
+      .filter-btn:hover {
+        background: var(--primary-brand-secondary);
+        color: var(--bg-primary);
+      }
+      .bank-account-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .bank-account-info {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+      }
+      .bank-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        background: var(--primary-brand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        color: var(--bg-primary);
+        font-weight: var(--font-weight-bold);
+      }
+      .bank-details h3 {
+        margin: 0 0 var(--spacing-xs) 0;
+        font-size: var(--font-size-lg);
+        color: var(--text-primary);
+      }
+      .bank-details p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .bank-balance {
+        text-align: right;
+      }
+      .balance-amount {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--primary-brand);
+        margin: 0;
+      }
+      .sync-status {
+        font-size: var(--font-size-sm);
+        color: var(--status-success);
+        margin: var(--spacing-xs) 0 0 0;
+      }
+      .connect-bank-card {
+        background: var(--bg-card);
+        border: 2px dashed var(--bg-tertiary);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-4xl);
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .connect-bank-card:hover {
+        border-color: var(--primary-brand);
+        background: rgba(74, 222, 128, 0.05);
+      }
+      .connect-icon {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--spacing-md);
+      }
+      .plaid-search {
+        width: 100%;
+        padding: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-lg);
+      }
+      .bank-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .bank-option {
+        background: var(--bg-card);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .bank-option:hover {
+        border-color: var(--primary-brand);
+        box-shadow: var(--shadow-md);
+      }
+      .investment-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-2xl);
+      }
+      .investment-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .investment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-2xl);
+      }
+      .add-investment-form {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        display: none;
+      }
+      .add-investment-form.active {
+        display: block;
+      }
+      .form-group {
+        margin-bottom: var(--spacing-lg);
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-secondary);
+        font-weight: var(--font-weight-medium);
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        box-sizing: border-box;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+      }
+      .investment-item {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-md);
+      }
+      .investment-details {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+      }
+      .investment-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-lg);
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+      }
+      .investment-info h4 {
+        margin: 0 0 var(--spacing-xs) 0;
+        color: var(--text-primary);
+      }
+      .investment-info p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .investment-performance {
+        text-align: right;
+      }
+      .performance-value {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-bold);
+        margin: 0;
+      }
+      .performance-change {
+        font-size: var(--font-size-sm);
+        margin: var(--spacing-xs) 0 0 0;
+      }
+      .performance-gain {
+        color: var(--status-success);
+      }
+      .performance-loss {
+        color: var(--status-error);
+      }
+      .section-title {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-lg);
+      }
+      .settings-section {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .settings-section h3 {
+        margin: 0 0 var(--spacing-lg) 0;
+        color: var(--text-primary);
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+      }
+      .setting-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-md) 0;
+        border-bottom: 1px solid var(--bg-tertiary);
+      }
+      .setting-item:last-child {
+        border-bottom: none;
+      }
+      .setting-info {
+        flex: 1;
+      }
+      .setting-label {
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-xs);
+      }
+      .setting-description {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .setting-control {
+        margin-left: var(--spacing-lg);
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+      }
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bg-tertiary);
+        transition: var(--transition);
+        border-radius: var(--radius-full);
+      }
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: var(--text-primary);
+        transition: var(--transition);
+        border-radius: var(--radius-full);
+      }
+      input:checked + .toggle-slider {
+        background-color: var(--primary-brand);
+      }
+      input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-2xl);
+      }
+      .contact-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+      }
+      .contact-icon {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--spacing-md);
+      }
+      .contact-card h3 {
+        margin: 0 0 var(--spacing-sm) 0;
+        color: var(--text-primary);
+      }
+      .contact-card p {
+        margin: 0 0 var(--spacing-md) 0;
+        color: var(--text-secondary);
+      }
+      .contact-link {
+        color: var(--primary-brand);
+        text-decoration: none;
+        font-weight: var(--font-weight-medium);
+      }
+      .contact-link:hover {
+        text-decoration: underline;
+      }
+      .faq-item {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        box-shadow: var(--shadow-md);
+      }
+      .faq-question {
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-sm);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .faq-answer {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        display: none;
+      }
+      .faq-answer.active {
+        display: block;
+      }
+      .feedback-form {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .textarea {
+        width: 100%;
+        min-height: 120px;
+        padding: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        font-family: var(--font-primary);
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-lg);
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .breadcrumb-link {
+        color: var(--primary-brand);
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .breadcrumb-link:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
-    <header class="dashboard-header">
-      <div class="dashboard-title">Net Worth Dashboard</div>
-      <div class="quick-actions">
-        <button class="btn" onclick="alert('Add Transaction')">
-          + Add Transaction
-        </button>
-        <button class="btn secondary" onclick="alert('View Reports')">
-          View Reports
-        </button>
-      </div>
-    </header>
-    <main>
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-title">Net Worth</div>
-          <div class="card-value" id="netWorth">$0</div>
-          <div class="card-sub">Assets - Liabilities</div>
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen active">
+      <header class="dashboard-header">
+        <div class="dashboard-title">Net Worth Dashboard</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="alert('Add Transaction')">
+            + Add Transaction
+          </button>
+          <button class="btn secondary" onclick="alert('View Reports')">
+            View Reports
+          </button>
         </div>
-        <div class="card">
-          <div class="card-title">Real-Time Income</div>
-          <div class="income-real-time" id="realTimeIncome">$0.00</div>
-          <div class="card-sub">Earnings since 9:00 AM</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Monthly Savings Rate</div>
-          <div class="card-value" id="savingsRate">0%</div>
-          <div class="progress-bar">
-            <div
-              class="progress-bar-fill"
-              id="savingsProgress"
-              style="width: 0%"
-            ></div>
+      </header>
+      <main>
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-title">Net Worth</div>
+            <div class="card-value" id="netWorth">$0</div>
+            <div class="card-sub">Assets - Liabilities</div>
           </div>
-          <div class="card-sub">Goal: 20%</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Total Assets</div>
-          <div class="card-value" id="assets">$0</div>
-          <div class="card-sub">Bank, Investments, Cash</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Total Liabilities</div>
-          <div class="card-value" id="liabilities">$0</div>
-          <div class="card-sub">Loans, Credit Cards</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Spending This Month</div>
-          <div class="card-value" id="spending">$0</div>
-          <div class="card-sub">
-            Compared to last month: <span id="spendingChange">0%</span>
+          <div class="card">
+            <div class="card-title">Real-Time Income</div>
+            <div class="income-real-time" id="realTimeIncome">$0.00</div>
+            <div class="card-sub">Earnings since 9:00 AM</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Monthly Savings Rate</div>
+            <div class="card-value" id="savingsRate">0%</div>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                id="savingsProgress"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="card-sub">Goal: 20%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Assets</div>
+            <div class="card-value" id="assets">$0</div>
+            <div class="card-sub">Bank, Investments, Cash</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Liabilities</div>
+            <div class="card-value" id="liabilities">$0</div>
+            <div class="card-sub">Loans, Credit Cards</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Spending This Month</div>
+            <div class="card-value" id="spending">$0</div>
+            <div class="card-sub">
+              Compared to last month: <span id="spendingChange">0%</span>
+            </div>
           </div>
         </div>
+      </main>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Settings</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="switchScreen('contact-us')">
+            Contact Support
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- User Profile Section -->
+        <div class="settings-section">
+          <h3>👤 User Profile</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Name</div>
+              <div class="setting-description">Your display name</div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="text"
+                id="user-name"
+                value="Shalin Luitel"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              />
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Email</div>
+              <div class="setting-description">Your email address</div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="email"
+                id="user-email"
+                value="shalin@example.com"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Preferences -->
+        <div class="settings-section">
+          <h3>💰 Financial Preferences</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Currency</div>
+              <div class="setting-description">
+                Display currency for all amounts
+              </div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="currency-select"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="CAD">CAD (C$)</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Monthly Savings Goal</div>
+              <div class="setting-description">
+                Target percentage of income to save
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="number"
+                id="savings-goal"
+                value="20"
+                min="0"
+                max="100"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  width: 80px;
+                "
+              />
+              <span style="color: var(--text-secondary); margin-left: 8px"
+                >%</span
+              >
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Work Hours</div>
+              <div class="setting-description">
+                For real-time income calculation
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="time"
+                id="work-start"
+                value="09:00"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  margin-right: 8px;
+                "
+              />
+              to
+              <input
+                type="time"
+                id="work-end"
+                value="17:00"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  margin-left: 8px;
+                "
+              />
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Hourly Rate</div>
+              <div class="setting-description">
+                For real-time income tracking
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="number"
+                id="hourly-rate"
+                value="25"
+                min="0"
+                step="0.01"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  width: 100px;
+                "
+              />
+              <span style="color: var(--text-secondary); margin-left: 8px"
+                >$/hour</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Security & Privacy -->
+        <div class="settings-section">
+          <h3>🔒 Security & Privacy</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Two-Factor Authentication</div>
+              <div class="setting-description">
+                Add extra security to your account
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="two-factor" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Auto-Lock Timeout</div>
+              <div class="setting-description">
+                Automatically lock app after inactivity
+              </div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="auto-lock"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="5">5 minutes</option>
+                <option value="15" selected>15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="0">Never</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Biometric Login</div>
+              <div class="setting-description">
+                Use fingerprint or face ID to login
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="biometric" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-section">
+          <h3>🔔 Notifications</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Transaction Alerts</div>
+              <div class="setting-description">
+                Get notified of new transactions
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="transaction-alerts" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Monthly Reports</div>
+              <div class="setting-description">
+                Receive monthly financial summaries
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="monthly-reports" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Budget Warnings</div>
+              <div class="setting-description">
+                Alert when approaching budget limits
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="budget-warnings" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="settings-section">
+          <h3>💾 Data Management</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Auto-Sync</div>
+              <div class="setting-description">
+                Automatically sync data across devices
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="auto-sync" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Export Data</div>
+              <div class="setting-description">
+                Download your financial data
+              </div>
+            </div>
+            <div class="setting-control">
+              <button class="btn secondary" onclick="exportData()">
+                Export CSV
+              </button>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Data Backup</div>
+              <div class="setting-description">Last backup: Today, 2:15 PM</div>
+            </div>
+            <div class="setting-control">
+              <button class="btn secondary" onclick="createBackup()">
+                Backup Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Preferences -->
+        <div class="settings-section">
+          <h3>🎨 App Preferences</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Theme</div>
+              <div class="setting-description">Choose your preferred theme</div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="theme-select"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="dark" selected>Dark</option>
+                <option value="light">Light</option>
+                <option value="auto">Auto</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Compact View</div>
+              <div class="setting-description">
+                Show more data in less space
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="compact-view" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--spacing-2xl)">
+          <button class="btn" onclick="saveSettings()">Save Changes</button>
+          <button
+            class="btn secondary"
+            onclick="resetSettings()"
+            style="margin-left: var(--spacing-md)"
+          >
+            Reset to Defaults
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Contact Us Screen -->
+    <div id="contact-us-screen" class="screen">
+      <div class="breadcrumb">
+        <span class="breadcrumb-link" onclick="switchScreen('settings')"
+          >Settings</span
+        >
+        <span>›</span>
+        <span>Contact Support</span>
       </div>
-    </main>
+
+      <header class="transactions-header">
+        <div class="transactions-title">Contact Support</div>
+        <div class="quick-actions">
+          <button class="btn secondary" onclick="switchScreen('settings')">
+            ← Back to Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Contact Options -->
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>Live Chat</h3>
+            <p>Get instant help from our support team</p>
+            <a href="#" class="contact-link" onclick="startLiveChat()"
+              >Start Chat</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email Support</h3>
+            <p>Send us an email and we'll respond within 24 hours</p>
+            <a href="mailto:support@financeapp.com" class="contact-link"
+              >support@financeapp.com</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📚</div>
+            <h3>Help Center</h3>
+            <p>Browse articles and tutorials</p>
+            <a href="#" class="contact-link" onclick="openHelpCenter()"
+              >Browse Articles</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Phone Support</h3>
+            <p>Call us Monday-Friday, 9 AM - 6 PM EST</p>
+            <a href="tel:+1-800-FINANCE" class="contact-link">1-800-FINANCE</a>
+          </div>
+        </div>
+
+        <!-- Frequently Asked Questions -->
+        <div class="section-title">Frequently Asked Questions</div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How do I connect my bank account securely?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            We use Plaid, a trusted financial technology company, to securely
+            connect your bank accounts. Your login credentials are encrypted and
+            never stored on our servers. Plaid is used by thousands of financial
+            apps and is bank-level secure.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Is my financial data safe and private?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes, absolutely. We use 256-bit SSL encryption to protect your data
+            in transit and at rest. We never sell your personal information and
+            follow strict privacy guidelines. Your data is only used to provide
+            you with financial insights.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How often is my account data updated?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Your account data is automatically updated multiple times per day.
+            Real-time income tracking updates every minute during your work
+            hours, and bank account balances are refreshed every few hours.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Can I export my financial data?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes, you can export all your financial data in CSV format from the
+            Settings page. This includes transactions, account balances, and
+            investment data. You can also create manual backups anytime.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            What investment types can I track?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            You can track stocks, ETFs, mutual funds, bonds, cryptocurrencies,
+            real estate investments, and commodities. Each investment type shows
+            current value, gains/losses, and performance over time.
+          </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="section-title">Send Us Feedback</div>
+        <div class="feedback-form">
+          <h3>We'd love to hear from you!</h3>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Help us improve by sharing your thoughts, reporting bugs, or
+            suggesting new features.
+          </p>
+
+          <div class="form-group">
+            <label for="feedback-type">Feedback Type</label>
+            <select id="feedback-type">
+              <option value="general">General Feedback</option>
+              <option value="bug">Bug Report</option>
+              <option value="feature">Feature Request</option>
+              <option value="support">Support Question</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-subject">Subject</label>
+            <input
+              type="text"
+              id="feedback-subject"
+              placeholder="Brief description of your feedback"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-message">Message</label>
+            <textarea
+              id="feedback-message"
+              class="textarea"
+              placeholder="Please provide details about your feedback, bug report, or feature request..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-email">Your Email (optional)</label>
+            <input
+              type="email"
+              id="feedback-email"
+              placeholder="We'll use this to follow up if needed"
+            />
+          </div>
+
+          <button class="btn" onclick="submitFeedback()">Send Feedback</button>
+        </div>
+
+        <!-- Company Information -->
+        <div class="section-title">About FinanceApp</div>
+        <div class="card">
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            <strong style="color: var(--text-primary)">FinanceApp</strong> is
+            your comprehensive personal finance companion, designed to help you
+            track expenses, manage investments, and achieve your financial
+            goals. We're committed to providing secure, intuitive, and powerful
+            financial tools for everyone.
+          </p>
+          <br />
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            <strong style="color: var(--text-primary)">Address:</strong><br />
+            123 Finance Street, Suite 456<br />
+            New York, NY 10001<br /><br />
+
+            <strong style="color: var(--text-primary)">Business Hours:</strong
+            ><br />
+            Monday - Friday: 9:00 AM - 6:00 PM EST<br />
+            Saturday: 10:00 AM - 2:00 PM EST<br />
+            Sunday: Closed
+          </p>
+          <br />
+          <div
+            style="
+              display: flex;
+              gap: var(--spacing-lg);
+              justify-content: center;
+            "
+          >
+            <a href="#" class="contact-link" onclick="openSocial('twitter')"
+              >🐦 Twitter</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('linkedin')"
+              >💼 LinkedIn</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('facebook')"
+              >📘 Facebook</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('instagram')"
+              >📷 Instagram</a
+            >
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Transactions Screen -->
+    <div id="transactions-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Recent Transactions</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="alert('Add Transaction')">
+            + Add Transaction
+          </button>
+        </div>
+      </header>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="income">Income</button>
+        <button class="filter-btn" data-filter="expense">Expenses</button>
+        <button class="filter-btn" data-filter="transfer">Transfers</button>
+      </div>
+      <main>
+        <div id="transactions-list">
+          <!-- Transactions will be dynamically populated here -->
+        </div>
+      </main>
+    </div>
+
+    <!-- Bank Accounts Screen -->
+    <div id="bank-accounts-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Connected Bank Accounts</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="toggleConnectBank()">
+            + Connect Account
+          </button>
+        </div>
+      </header>
+
+      <div id="connect-bank-interface" style="display: none">
+        <div class="card">
+          <h3>Connect Your Bank Account</h3>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Securely connect your bank account to automatically track income and
+            expenses in real-time.
+          </p>
+
+          <input
+            type="text"
+            class="plaid-search"
+            placeholder="Search for your bank..."
+            id="bank-search"
+          />
+
+          <div class="bank-list">
+            <div class="bank-option" onclick="connectBank('Chase Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏦</div>
+              <div>Chase Bank</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Bank of America')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏛️</div>
+              <div>Bank of America</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Wells Fargo')">
+              <div style="font-size: 24px; margin-bottom: 8px">🐎</div>
+              <div>Wells Fargo</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Capital One')">
+              <div style="font-size: 24px; margin-bottom: 8px">💳</div>
+              <div>Capital One</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('Citi Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🏢</div>
+              <div>Citi Bank</div>
+            </div>
+            <div class="bank-option" onclick="connectBank('US Bank')">
+              <div style="font-size: 24px; margin-bottom: 8px">🇺🇸</div>
+              <div>US Bank</div>
+            </div>
+          </div>
+
+          <button class="btn secondary" onclick="toggleConnectBank()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <main>
+        <div id="connected-accounts">
+          <!-- Connected accounts will be populated here -->
+        </div>
+
+        <div
+          id="no-accounts"
+          class="connect-bank-card"
+          onclick="toggleConnectBank()"
+        >
+          <div class="connect-icon">🏦</div>
+          <h3>Connect Your First Bank Account</h3>
+          <p style="color: var(--text-secondary)">
+            Securely link your bank account using Plaid to automatically track
+            your income and expenses in real-time.
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Investments Screen -->
+    <div id="investments-screen" class="screen">
+      <header class="investment-header">
+        <div class="transactions-title">Investment Portfolio</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="toggleAddInvestment()">
+            + Add Investment
+          </button>
+        </div>
+      </header>
+
+      <div class="investment-summary">
+        <div class="investment-card">
+          <div class="card-title">Total Portfolio Value</div>
+          <div class="card-value" id="portfolio-value">$0</div>
+          <div class="card-sub">Across all investments</div>
+        </div>
+        <div class="investment-card">
+          <div class="card-title">Total Gain/Loss</div>
+          <div class="card-value" id="portfolio-change">$0</div>
+          <div class="card-sub">Since inception</div>
+        </div>
+        <div class="investment-card">
+          <div class="card-title">Portfolio Diversity</div>
+          <div class="card-value" id="portfolio-diversity">0</div>
+          <div class="card-sub">Asset types</div>
+        </div>
+      </div>
+
+      <div id="add-investment-form" class="add-investment-form">
+        <h3>Add New Investment</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="investment-symbol">Symbol/Name</label>
+            <input
+              type="text"
+              id="investment-symbol"
+              placeholder="e.g., AAPL, Bitcoin"
+            />
+          </div>
+          <div class="form-group">
+            <label for="investment-type">Asset Type</label>
+            <select id="investment-type">
+              <option value="stock">Stock</option>
+              <option value="etf">ETF</option>
+              <option value="crypto">Cryptocurrency</option>
+              <option value="bond">Bond</option>
+              <option value="real-estate">Real Estate</option>
+              <option value="commodity">Commodity</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="investment-shares">Shares/Quantity</label>
+            <input
+              type="number"
+              id="investment-shares"
+              placeholder="0"
+              step="0.001"
+            />
+          </div>
+          <div class="form-group">
+            <label for="investment-price">Purchase Price</label>
+            <input
+              type="number"
+              id="investment-price"
+              placeholder="0.00"
+              step="0.01"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="investment-date">Purchase Date</label>
+          <input type="date" id="investment-date" />
+        </div>
+        <div style="display: flex; gap: var(--spacing-md)">
+          <button class="btn" onclick="addInvestment()">Add Investment</button>
+          <button class="btn secondary" onclick="toggleAddInvestment()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <main>
+        <div class="section-title">Your Investments</div>
+        <div id="investments-list">
+          <!-- Investments will be populated here -->
+        </div>
+      </main>
+    </div>
     <nav class="nav-bar">
-      <div class="nav-item active">Dashboard</div>
-      <div class="nav-item">Transactions</div>
-      <div class="nav-item">Assets</div>
-      <div class="nav-item">Liabilities</div>
-      <div class="nav-item">Settings</div>
+      <div class="nav-item active" data-screen="dashboard">Dashboard</div>
+      <div class="nav-item" data-screen="transactions">Transactions</div>
+      <div class="nav-item" data-screen="bank-accounts">Bank Accounts</div>
+      <div class="nav-item" data-screen="investments">Investments</div>
+      <div class="nav-item" data-screen="settings">Settings</div>
     </nav>
     <script>
       // Sample Data
@@ -271,14 +1566,522 @@
         workEnd: "17:00",
       };
 
+      // Sample Transaction Data (sorted by date, newest first)
+      const sampleTransactions = [
+        {
+          id: 1,
+          description: "Salary Payment",
+          category: "Income",
+          amount: 4000,
+          type: "income",
+          date: "2025-06-25",
+          icon: "💰",
+        },
+        {
+          id: 2,
+          description: "Grocery Shopping",
+          category: "Food & Dining",
+          amount: -125.5,
+          type: "expense",
+          date: "2025-06-24",
+          icon: "🛒",
+        },
+        {
+          id: 3,
+          description: "Coffee Shop",
+          category: "Food & Dining",
+          amount: -4.25,
+          type: "expense",
+          date: "2025-06-24",
+          icon: "☕",
+        },
+        {
+          id: 4,
+          description: "Gas Station",
+          category: "Transportation",
+          amount: -45.0,
+          type: "expense",
+          date: "2025-06-23",
+          icon: "⛽",
+        },
+        {
+          id: 5,
+          description: "Investment Transfer",
+          category: "Investments",
+          amount: -500,
+          type: "transfer",
+          date: "2025-06-22",
+          icon: "📈",
+        },
+        {
+          id: 6,
+          description: "Freelance Project",
+          category: "Side Income",
+          amount: 750,
+          type: "income",
+          date: "2025-06-21",
+          icon: "💻",
+        },
+        {
+          id: 7,
+          description: "Netflix Subscription",
+          category: "Entertainment",
+          amount: -15.99,
+          type: "expense",
+          date: "2025-06-20",
+          icon: "📺",
+        },
+        {
+          id: 8,
+          description: "Electric Bill",
+          category: "Utilities",
+          amount: -89.45,
+          type: "expense",
+          date: "2025-06-19",
+          icon: "⚡",
+        },
+        {
+          id: 9,
+          description: "Amazon Purchase",
+          category: "Shopping",
+          amount: -67.23,
+          type: "expense",
+          date: "2025-06-18",
+          icon: "📦",
+        },
+        {
+          id: 10,
+          description: "Bank Transfer",
+          category: "Transfer",
+          amount: -200,
+          type: "transfer",
+          date: "2025-06-17",
+          icon: "🏦",
+        },
+      ];
+
+      // Sample Bank Accounts Data
+      let connectedBankAccounts = [
+        {
+          id: 1,
+          bankName: "Chase Bank",
+          accountType: "Checking",
+          accountNumber: "****1234",
+          balance: 5420.85,
+          lastSync: "Just now",
+          logo: "🏦",
+        },
+        {
+          id: 2,
+          bankName: "Capital One",
+          accountType: "Savings",
+          accountNumber: "****5678",
+          balance: 12750.2,
+          lastSync: "2 minutes ago",
+          logo: "💳",
+        },
+      ];
+
+      // Sample Investment Data
+      let investments = [
+        {
+          id: 1,
+          symbol: "AAPL",
+          name: "Apple Inc.",
+          type: "stock",
+          shares: 25,
+          purchasePrice: 150.0,
+          currentPrice: 175.5,
+          purchaseDate: "2025-01-15",
+          icon: "📱",
+        },
+        {
+          id: 2,
+          symbol: "BTC",
+          name: "Bitcoin",
+          type: "crypto",
+          shares: 0.5,
+          purchasePrice: 45000.0,
+          currentPrice: 48500.0,
+          purchaseDate: "2025-02-10",
+          icon: "₿",
+        },
+        {
+          id: 3,
+          symbol: "SPY",
+          name: "SPDR S&P 500 ETF",
+          type: "etf",
+          shares: 10,
+          purchasePrice: 420.0,
+          currentPrice: 435.25,
+          purchaseDate: "2025-03-01",
+          icon: "📈",
+        },
+        {
+          id: 4,
+          symbol: "VXUS",
+          name: "Vanguard Total International Stock ETF",
+          type: "etf",
+          shares: 15,
+          purchasePrice: 58.0,
+          currentPrice: 62.1,
+          purchaseDate: "2025-03-15",
+          icon: "🌍",
+        },
+      ];
+
+      // Navigation State
+      let currentScreen = "dashboard";
+      let currentFilter = "all";
+
       function formatCurrency(val) {
         return (
           "$" +
-          val.toLocaleString(undefined, {
+          Math.abs(val).toLocaleString(undefined, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })
         );
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        const today = new Date();
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (date.toDateString() === today.toDateString()) {
+          return "Today";
+        } else if (date.toDateString() === yesterday.toDateString()) {
+          return "Yesterday";
+        } else {
+          return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+        }
+      }
+
+      function switchScreen(screenName) {
+        // Hide all screens
+        document.querySelectorAll(".screen").forEach((screen) => {
+          screen.classList.remove("active");
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + "-screen");
+        if (targetScreen) {
+          targetScreen.classList.add("active");
+          currentScreen = screenName;
+        }
+
+        // Update navigation
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-screen="${screenName}"]`)
+          .classList.add("active");
+
+        // Load screen-specific content
+        if (screenName === "transactions") {
+          renderTransactions();
+        } else if (screenName === "bank-accounts") {
+          renderBankAccounts();
+        } else if (screenName === "investments") {
+          renderInvestments();
+        }
+      }
+
+      function filterTransactions(filterType) {
+        currentFilter = filterType;
+
+        // Update filter buttons
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-filter="${filterType}"]`)
+          .classList.add("active");
+
+        renderTransactions();
+      }
+
+      function getFilteredTransactions() {
+        if (currentFilter === "all") {
+          return sampleTransactions;
+        }
+        return sampleTransactions.filter(
+          (transaction) => transaction.type === currentFilter,
+        );
+      }
+
+      function renderTransactions() {
+        const transactionsList = document.getElementById("transactions-list");
+        const filteredTransactions = getFilteredTransactions();
+
+        if (filteredTransactions.length === 0) {
+          transactionsList.innerHTML = `
+            <div class="card">
+              <div style="text-align: center; color: var(--text-secondary);">
+                No transactions found for the selected filter.
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        transactionsList.innerHTML = filteredTransactions
+          .map(
+            (transaction) => `
+          <div class="transaction-item">
+            <div class="transaction-left">
+              <div class="transaction-icon ${transaction.type}">
+                ${transaction.icon}
+              </div>
+              <div class="transaction-details">
+                <div class="transaction-description">${transaction.description}</div>
+                <div class="transaction-category">${transaction.category}</div>
+                <div class="transaction-date">${formatDate(transaction.date)}</div>
+              </div>
+            </div>
+            <div class="transaction-amount ${transaction.type}">
+              ${transaction.amount > 0 ? "+" : ""}${formatCurrency(transaction.amount)}
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      // Bank Accounts Functions
+      function toggleConnectBank() {
+        const interface = document.getElementById("connect-bank-interface");
+        interface.style.display =
+          interface.style.display === "none" ? "block" : "none";
+      }
+
+      function connectBank(bankName) {
+        // Simulate bank connection process
+        alert(
+          `Connecting to ${bankName}...\n\nThis would normally redirect to Plaid for secure authentication.`,
+        );
+
+        // Simulate successful connection
+        setTimeout(() => {
+          const newAccount = {
+            id: connectedBankAccounts.length + 1,
+            bankName: bankName,
+            accountType: "Checking",
+            accountNumber: `****${Math.floor(Math.random() * 9000) + 1000}`,
+            balance: Math.floor(Math.random() * 10000) + 1000,
+            lastSync: "Just now",
+            logo: getBankLogo(bankName),
+          };
+
+          connectedBankAccounts.push(newAccount);
+          renderBankAccounts();
+          toggleConnectBank();
+
+          // Update dashboard data with new account
+          updateDashboardWithBankData();
+        }, 1500);
+      }
+
+      function getBankLogo(bankName) {
+        const logos = {
+          "Chase Bank": "🏦",
+          "Bank of America": "🏛️",
+          "Wells Fargo": "🐎",
+          "Capital One": "💳",
+          "Citi Bank": "🏢",
+          "US Bank": "🇺🇸",
+        };
+        return logos[bankName] || "🏦";
+      }
+
+      function renderBankAccounts() {
+        const connectedAccountsDiv =
+          document.getElementById("connected-accounts");
+        const noAccountsDiv = document.getElementById("no-accounts");
+
+        if (connectedBankAccounts.length === 0) {
+          connectedAccountsDiv.style.display = "none";
+          noAccountsDiv.style.display = "block";
+          return;
+        }
+
+        connectedAccountsDiv.style.display = "block";
+        noAccountsDiv.style.display = "none";
+
+        connectedAccountsDiv.innerHTML = connectedBankAccounts
+          .map(
+            (account) => `
+          <div class="bank-account-card">
+            <div class="bank-account-info">
+              <div class="bank-logo">${account.logo}</div>
+              <div class="bank-details">
+                <h3>${account.bankName}</h3>
+                <p>${account.accountType} ${account.accountNumber}</p>
+              </div>
+            </div>
+            <div class="bank-balance">
+              <div class="balance-amount">${formatCurrency(account.balance)}</div>
+              <div class="sync-status">✓ Synced ${account.lastSync}</div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function updateDashboardWithBankData() {
+        // Calculate total from connected accounts
+        const totalBankBalance = connectedBankAccounts.reduce(
+          (sum, account) => sum + account.balance,
+          0,
+        );
+
+        // Update assets with bank data
+        sampleData.assets = 25000 + totalBankBalance;
+
+        // Trigger dashboard update
+        if (currentScreen === "dashboard") {
+          updateDashboard();
+        }
+      }
+
+      // Investment Functions
+      function toggleAddInvestment() {
+        const form = document.getElementById("add-investment-form");
+        form.classList.toggle("active");
+
+        if (form.classList.contains("active")) {
+          document.getElementById("investment-date").value = new Date()
+            .toISOString()
+            .split("T")[0];
+        }
+      }
+
+      function addInvestment() {
+        const symbol = document.getElementById("investment-symbol").value;
+        const type = document.getElementById("investment-type").value;
+        const shares = parseFloat(
+          document.getElementById("investment-shares").value,
+        );
+        const price = parseFloat(
+          document.getElementById("investment-price").value,
+        );
+        const date = document.getElementById("investment-date").value;
+
+        if (!symbol || !shares || !price || !date) {
+          alert("Please fill in all fields");
+          return;
+        }
+
+        const newInvestment = {
+          id: investments.length + 1,
+          symbol: symbol.toUpperCase(),
+          name: symbol.toUpperCase(),
+          type: type,
+          shares: shares,
+          purchasePrice: price,
+          currentPrice: price + (Math.random() * 20 - 10), // Simulate current price
+          purchaseDate: date,
+          icon: getInvestmentIcon(type),
+        };
+
+        investments.push(newInvestment);
+        renderInvestments();
+        toggleAddInvestment();
+
+        // Clear form
+        document.getElementById("investment-symbol").value = "";
+        document.getElementById("investment-shares").value = "";
+        document.getElementById("investment-price").value = "";
+      }
+
+      function getInvestmentIcon(type) {
+        const icons = {
+          stock: "📈",
+          etf: "📊",
+          crypto: "₿",
+          bond: "🏛️",
+          "real-estate": "🏠",
+          commodity: "🥇",
+        };
+        return icons[type] || "📈";
+      }
+
+      function renderInvestments() {
+        updateInvestmentSummary();
+
+        const investmentsList = document.getElementById("investments-list");
+
+        if (investments.length === 0) {
+          investmentsList.innerHTML = `
+            <div class="card" style="text-align: center; padding: var(--spacing-4xl);">
+              <div style="font-size: var(--font-size-4xl); margin-bottom: var(--spacing-lg);">📈</div>
+              <h3>Start Your Investment Journey</h3>
+              <p style="color: var(--text-secondary);">Add your first investment to track your portfolio performance.</p>
+            </div>
+          `;
+          return;
+        }
+
+        investmentsList.innerHTML = investments
+          .map((investment) => {
+            const totalValue = investment.shares * investment.currentPrice;
+            const totalCost = investment.shares * investment.purchasePrice;
+            const gainLoss = totalValue - totalCost;
+            const gainLossPercent = (gainLoss / totalCost) * 100;
+            const isGain = gainLoss >= 0;
+
+            return `
+            <div class="investment-item">
+              <div class="investment-details">
+                <div class="investment-icon">${investment.icon}</div>
+                <div class="investment-info">
+                  <h4>${investment.symbol}</h4>
+                  <p>${investment.name} • ${investment.shares} shares</p>
+                  <p>Purchased: ${formatDate(investment.purchaseDate)}</p>
+                </div>
+              </div>
+              <div class="investment-performance">
+                <div class="performance-value">${formatCurrency(totalValue)}</div>
+                <div class="performance-change ${isGain ? "performance-gain" : "performance-loss"}">
+                  ${isGain ? "+" : ""}${formatCurrency(gainLoss)} (${gainLossPercent.toFixed(2)}%)
+                </div>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      function updateInvestmentSummary() {
+        const totalValue = investments.reduce(
+          (sum, inv) => sum + inv.shares * inv.currentPrice,
+          0,
+        );
+        const totalCost = investments.reduce(
+          (sum, inv) => sum + inv.shares * inv.purchasePrice,
+          0,
+        );
+        const totalGainLoss = totalValue - totalCost;
+        const uniqueTypes = new Set(investments.map((inv) => inv.type)).size;
+
+        document.getElementById("portfolio-value").textContent =
+          formatCurrency(totalValue);
+
+        const changeElement = document.getElementById("portfolio-change");
+        changeElement.textContent =
+          (totalGainLoss >= 0 ? "+" : "") + formatCurrency(totalGainLoss);
+        changeElement.style.color =
+          totalGainLoss >= 0 ? "var(--status-success)" : "var(--status-error)";
+
+        document.getElementById("portfolio-diversity").textContent =
+          uniqueTypes;
       }
 
       function updateDashboard() {
@@ -326,9 +2129,291 @@
           formatCurrency(earned);
       }
 
-      updateDashboard();
-      updateRealTimeIncome();
-      setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        // Navigation event listeners
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.addEventListener("click", function () {
+            const screen = this.getAttribute("data-screen");
+            if (
+              screen === "dashboard" ||
+              screen === "transactions" ||
+              screen === "bank-accounts" ||
+              screen === "investments" ||
+              screen === "settings"
+            ) {
+              switchScreen(screen);
+            } else {
+              alert(
+                `${screen.charAt(0).toUpperCase() + screen.slice(1)} screen coming soon!`,
+              );
+            }
+          });
+        });
+
+        // Filter event listeners
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const filter = this.getAttribute("data-filter");
+            filterTransactions(filter);
+          });
+        });
+
+        // Initialize dashboard
+        updateDashboard();
+        updateRealTimeIncome();
+        setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+
+        // Initialize bank accounts and investments with sample data
+        updateDashboardWithBankData();
+        renderBankAccounts();
+        renderInvestments();
+
+        // Load saved settings
+        loadSettings();
+      });
+
+      // Settings Functions
+      function saveSettings() {
+        // Get all settings values
+        const settings = {
+          userName: document.getElementById("user-name").value,
+          userEmail: document.getElementById("user-email").value,
+          currency: document.getElementById("currency-select").value,
+          savingsGoal: document.getElementById("savings-goal").value,
+          workStart: document.getElementById("work-start").value,
+          workEnd: document.getElementById("work-end").value,
+          hourlyRate: document.getElementById("hourly-rate").value,
+          twoFactor: document.getElementById("two-factor").checked,
+          autoLock: document.getElementById("auto-lock").value,
+          biometric: document.getElementById("biometric").checked,
+          transactionAlerts:
+            document.getElementById("transaction-alerts").checked,
+          monthlyReports: document.getElementById("monthly-reports").checked,
+          budgetWarnings: document.getElementById("budget-warnings").checked,
+          autoSync: document.getElementById("auto-sync").checked,
+          theme: document.getElementById("theme-select").value,
+          compactView: document.getElementById("compact-view").checked,
+        };
+
+        // Update sample data with new values
+        sampleData.workStart = settings.workStart;
+        sampleData.workEnd = settings.workEnd;
+        sampleData.hourlyRate = parseFloat(settings.hourlyRate);
+        sampleData.savingsGoal = parseFloat(settings.savingsGoal) / 100;
+
+        // Save to localStorage (in a real app, this would sync to server)
+        localStorage.setItem("financeAppSettings", JSON.stringify(settings));
+
+        alert("Settings saved successfully!");
+
+        // Update dashboard if needed
+        if (currentScreen === "dashboard") {
+          updateDashboard();
+          updateRealTimeIncome();
+        }
+      }
+
+      function resetSettings() {
+        if (
+          confirm(
+            "Are you sure you want to reset all settings to defaults? This cannot be undone.",
+          )
+        ) {
+          // Reset form values to defaults
+          document.getElementById("user-name").value = "Shalin Luitel";
+          document.getElementById("user-email").value = "shalin@example.com";
+          document.getElementById("currency-select").value = "USD";
+          document.getElementById("savings-goal").value = "20";
+          document.getElementById("work-start").value = "09:00";
+          document.getElementById("work-end").value = "17:00";
+          document.getElementById("hourly-rate").value = "25";
+          document.getElementById("two-factor").checked = true;
+          document.getElementById("auto-lock").value = "15";
+          document.getElementById("biometric").checked = false;
+          document.getElementById("transaction-alerts").checked = true;
+          document.getElementById("monthly-reports").checked = true;
+          document.getElementById("budget-warnings").checked = true;
+          document.getElementById("auto-sync").checked = true;
+          document.getElementById("theme-select").value = "dark";
+          document.getElementById("compact-view").checked = false;
+
+          // Clear localStorage
+          localStorage.removeItem("financeAppSettings");
+
+          alert("Settings reset to defaults!");
+        }
+      }
+
+      function loadSettings() {
+        const savedSettings = localStorage.getItem("financeAppSettings");
+        if (savedSettings) {
+          const settings = JSON.parse(savedSettings);
+
+          // Apply saved settings to form
+          if (settings.userName)
+            document.getElementById("user-name").value = settings.userName;
+          if (settings.userEmail)
+            document.getElementById("user-email").value = settings.userEmail;
+          if (settings.currency)
+            document.getElementById("currency-select").value =
+              settings.currency;
+          if (settings.savingsGoal)
+            document.getElementById("savings-goal").value =
+              settings.savingsGoal;
+          if (settings.workStart)
+            document.getElementById("work-start").value = settings.workStart;
+          if (settings.workEnd)
+            document.getElementById("work-end").value = settings.workEnd;
+          if (settings.hourlyRate)
+            document.getElementById("hourly-rate").value = settings.hourlyRate;
+          if (settings.twoFactor !== undefined)
+            document.getElementById("two-factor").checked = settings.twoFactor;
+          if (settings.autoLock)
+            document.getElementById("auto-lock").value = settings.autoLock;
+          if (settings.biometric !== undefined)
+            document.getElementById("biometric").checked = settings.biometric;
+          if (settings.transactionAlerts !== undefined)
+            document.getElementById("transaction-alerts").checked =
+              settings.transactionAlerts;
+          if (settings.monthlyReports !== undefined)
+            document.getElementById("monthly-reports").checked =
+              settings.monthlyReports;
+          if (settings.budgetWarnings !== undefined)
+            document.getElementById("budget-warnings").checked =
+              settings.budgetWarnings;
+          if (settings.autoSync !== undefined)
+            document.getElementById("auto-sync").checked = settings.autoSync;
+          if (settings.theme)
+            document.getElementById("theme-select").value = settings.theme;
+          if (settings.compactView !== undefined)
+            document.getElementById("compact-view").checked =
+              settings.compactView;
+        }
+      }
+
+      function exportData() {
+        // Create CSV data
+        const csvData = [
+          ["Type", "Description", "Amount", "Date", "Category"],
+          ...sampleTransactions.map((t) => [
+            t.type,
+            t.description,
+            t.amount,
+            t.date,
+            t.category,
+          ]),
+          ["", "", "", "", ""],
+          ["Bank Accounts", "", "", "", ""],
+          ...connectedBankAccounts.map((a) => [
+            "Bank Account",
+            a.bankName + " " + a.accountType,
+            a.balance,
+            new Date().toISOString().split("T")[0],
+            "Account",
+          ]),
+          ["", "", "", "", ""],
+          ["Investments", "", "", "", ""],
+          ...investments.map((i) => [
+            "Investment",
+            i.symbol + " - " + i.name,
+            i.shares * i.currentPrice,
+            i.purchaseDate,
+            i.type,
+          ]),
+        ];
+
+        const csvContent = csvData.map((row) => row.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `finance-data-${new Date().toISOString().split("T")[0]}.csv`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+        alert("Financial data exported successfully!");
+      }
+
+      function createBackup() {
+        const backupData = {
+          transactions: sampleTransactions,
+          bankAccounts: connectedBankAccounts,
+          investments: investments,
+          settings: JSON.parse(
+            localStorage.getItem("financeAppSettings") || "{}",
+          ),
+          exportDate: new Date().toISOString(),
+        };
+
+        const backupContent = JSON.stringify(backupData, null, 2);
+        const blob = new Blob([backupContent], { type: "application/json" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `finance-backup-${new Date().toISOString().split("T")[0]}.json`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+        alert("Backup created successfully!");
+      }
+
+      // Contact Us Functions
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector("span");
+
+        answer.classList.toggle("active");
+        icon.textContent = answer.classList.contains("active") ? "▲" : "▼";
+      }
+
+      function submitFeedback() {
+        const type = document.getElementById("feedback-type").value;
+        const subject = document.getElementById("feedback-subject").value;
+        const message = document.getElementById("feedback-message").value;
+        const email = document.getElementById("feedback-email").value;
+
+        if (!subject.trim() || !message.trim()) {
+          alert("Please fill in both subject and message fields.");
+          return;
+        }
+
+        // In a real app, this would send to your backend
+        alert(
+          `Thank you for your ${type}!\n\nSubject: ${subject}\n\nWe've received your feedback and will review it shortly. ${email ? "We'll follow up at " + email + " if needed." : ""}`,
+        );
+
+        // Clear form
+        document.getElementById("feedback-subject").value = "";
+        document.getElementById("feedback-message").value = "";
+        document.getElementById("feedback-email").value = "";
+        document.getElementById("feedback-type").value = "general";
+      }
+
+      function startLiveChat() {
+        alert(
+          "Live chat would open here!\n\nIn a real app, this would connect you to a support agent or chatbot.",
+        );
+      }
+
+      function openHelpCenter() {
+        alert(
+          "Help Center would open here!\n\nThis would typically open a knowledge base with articles and tutorials.",
+        );
+      }
+
+      function openSocial(platform) {
+        const urls = {
+          twitter: "https://twitter.com/financeapp",
+          linkedin: "https://linkedin.com/company/financeapp",
+          facebook: "https://facebook.com/financeapp",
+          instagram: "https://instagram.com/financeapp",
+        };
+
+        alert(
+          `Opening ${platform.charAt(0).toUpperCase() + platform.slice(1)}...\n\nWould redirect to: ${urls[platform]}`,
+        );
+      }
     </script>
   </body>
 </html>
