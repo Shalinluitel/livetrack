@@ -1360,7 +1360,12 @@
         document.querySelectorAll(".nav-item").forEach((item) => {
           item.addEventListener("click", function () {
             const screen = this.getAttribute("data-screen");
-            if (screen === "dashboard" || screen === "transactions") {
+            if (
+              screen === "dashboard" ||
+              screen === "transactions" ||
+              screen === "bank-accounts" ||
+              screen === "investments"
+            ) {
               switchScreen(screen);
             } else {
               alert(
