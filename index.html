@@ -2519,16 +2519,61 @@
       }
 
       function updateRealTimeIncome() {
+        const saved = localStorage.getItem("incomeSettings");
+        let settings = saved ? JSON.parse(saved) : null;
+
+        if (!settings || !settings.type || !settings.amount) {
+          // Fall back to sample data if no settings saved
+          settings = {
+            type: "hourly",
+            amount: 10,
+            isTaxed: true,
+            taxRate: 25,
+            workStart: "09:00",
+            workEnd: "17:00",
+            workDays: [1, 2, 3, 4, 5],
+          };
+        }
+
         const now = new Date();
-        const today = now.toISOString().split("T")[0];
-        const start = new Date(today + "T" + sampleData.workStart + ":00");
-        const end = new Date(today + "T" + sampleData.workEnd + ":00");
+        const today = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+        // Check if today is a work day
+        if (!settings.workDays.includes(today)) {
+          document.getElementById("realTimeIncome").textContent = "$0.00";
+          return;
+        }
+
+        const todayStr = now.toISOString().split("T")[0];
+        const start = new Date(todayStr + "T" + settings.workStart + ":00");
+        const end = new Date(todayStr + "T" + settings.workEnd + ":00");
+
         let earned = 0;
+
         if (now > start) {
           const elapsed = Math.min(now, end) - start;
-          earned =
-            Math.max(0, elapsed / (1000 * 60 * 60)) * sampleData.hourlyRate;
+          const hoursWorked = Math.max(0, elapsed / (1000 * 60 * 60));
+
+          // Calculate hourly rate based on income type
+          let hourlyRate = 0;
+          if (settings.type === "hourly") {
+            hourlyRate = settings.amount;
+          } else if (settings.type === "monthly") {
+            const hoursPerMonth = settings.workDays.length * 4 * 8;
+            hourlyRate = settings.amount / hoursPerMonth;
+          } else if (settings.type === "yearly") {
+            const hoursPerYear = settings.workDays.length * 52 * 8;
+            hourlyRate = settings.amount / hoursPerYear;
+          }
+
+          // Apply tax if applicable
+          if (settings.isTaxed) {
+            hourlyRate = hourlyRate * (1 - settings.taxRate / 100);
+          }
+
+          earned = hoursWorked * hourlyRate;
         }
+
         document.getElementById("realTimeIncome").textContent =
           formatCurrency(earned);
       }
