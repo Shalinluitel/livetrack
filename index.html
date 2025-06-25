@@ -2169,6 +2169,248 @@
         renderBankAccounts();
         renderInvestments();
       });
+
+      // Settings Functions
+      function saveSettings() {
+        // Get all settings values
+        const settings = {
+          userName: document.getElementById("user-name").value,
+          userEmail: document.getElementById("user-email").value,
+          currency: document.getElementById("currency-select").value,
+          savingsGoal: document.getElementById("savings-goal").value,
+          workStart: document.getElementById("work-start").value,
+          workEnd: document.getElementById("work-end").value,
+          hourlyRate: document.getElementById("hourly-rate").value,
+          twoFactor: document.getElementById("two-factor").checked,
+          autoLock: document.getElementById("auto-lock").value,
+          biometric: document.getElementById("biometric").checked,
+          transactionAlerts:
+            document.getElementById("transaction-alerts").checked,
+          monthlyReports: document.getElementById("monthly-reports").checked,
+          budgetWarnings: document.getElementById("budget-warnings").checked,
+          autoSync: document.getElementById("auto-sync").checked,
+          theme: document.getElementById("theme-select").value,
+          compactView: document.getElementById("compact-view").checked,
+        };
+
+        // Update sample data with new values
+        sampleData.workStart = settings.workStart;
+        sampleData.workEnd = settings.workEnd;
+        sampleData.hourlyRate = parseFloat(settings.hourlyRate);
+        sampleData.savingsGoal = parseFloat(settings.savingsGoal) / 100;
+
+        // Save to localStorage (in a real app, this would sync to server)
+        localStorage.setItem("financeAppSettings", JSON.stringify(settings));
+
+        alert("Settings saved successfully!");
+
+        // Update dashboard if needed
+        if (currentScreen === "dashboard") {
+          updateDashboard();
+          updateRealTimeIncome();
+        }
+      }
+
+      function resetSettings() {
+        if (
+          confirm(
+            "Are you sure you want to reset all settings to defaults? This cannot be undone.",
+          )
+        ) {
+          // Reset form values to defaults
+          document.getElementById("user-name").value = "Shalin Luitel";
+          document.getElementById("user-email").value = "shalin@example.com";
+          document.getElementById("currency-select").value = "USD";
+          document.getElementById("savings-goal").value = "20";
+          document.getElementById("work-start").value = "09:00";
+          document.getElementById("work-end").value = "17:00";
+          document.getElementById("hourly-rate").value = "25";
+          document.getElementById("two-factor").checked = true;
+          document.getElementById("auto-lock").value = "15";
+          document.getElementById("biometric").checked = false;
+          document.getElementById("transaction-alerts").checked = true;
+          document.getElementById("monthly-reports").checked = true;
+          document.getElementById("budget-warnings").checked = true;
+          document.getElementById("auto-sync").checked = true;
+          document.getElementById("theme-select").value = "dark";
+          document.getElementById("compact-view").checked = false;
+
+          // Clear localStorage
+          localStorage.removeItem("financeAppSettings");
+
+          alert("Settings reset to defaults!");
+        }
+      }
+
+      function loadSettings() {
+        const savedSettings = localStorage.getItem("financeAppSettings");
+        if (savedSettings) {
+          const settings = JSON.parse(savedSettings);
+
+          // Apply saved settings to form
+          if (settings.userName)
+            document.getElementById("user-name").value = settings.userName;
+          if (settings.userEmail)
+            document.getElementById("user-email").value = settings.userEmail;
+          if (settings.currency)
+            document.getElementById("currency-select").value =
+              settings.currency;
+          if (settings.savingsGoal)
+            document.getElementById("savings-goal").value =
+              settings.savingsGoal;
+          if (settings.workStart)
+            document.getElementById("work-start").value = settings.workStart;
+          if (settings.workEnd)
+            document.getElementById("work-end").value = settings.workEnd;
+          if (settings.hourlyRate)
+            document.getElementById("hourly-rate").value = settings.hourlyRate;
+          if (settings.twoFactor !== undefined)
+            document.getElementById("two-factor").checked = settings.twoFactor;
+          if (settings.autoLock)
+            document.getElementById("auto-lock").value = settings.autoLock;
+          if (settings.biometric !== undefined)
+            document.getElementById("biometric").checked = settings.biometric;
+          if (settings.transactionAlerts !== undefined)
+            document.getElementById("transaction-alerts").checked =
+              settings.transactionAlerts;
+          if (settings.monthlyReports !== undefined)
+            document.getElementById("monthly-reports").checked =
+              settings.monthlyReports;
+          if (settings.budgetWarnings !== undefined)
+            document.getElementById("budget-warnings").checked =
+              settings.budgetWarnings;
+          if (settings.autoSync !== undefined)
+            document.getElementById("auto-sync").checked = settings.autoSync;
+          if (settings.theme)
+            document.getElementById("theme-select").value = settings.theme;
+          if (settings.compactView !== undefined)
+            document.getElementById("compact-view").checked =
+              settings.compactView;
+        }
+      }
+
+      function exportData() {
+        // Create CSV data
+        const csvData = [
+          ["Type", "Description", "Amount", "Date", "Category"],
+          ...sampleTransactions.map((t) => [
+            t.type,
+            t.description,
+            t.amount,
+            t.date,
+            t.category,
+          ]),
+          ["", "", "", "", ""],
+          ["Bank Accounts", "", "", "", ""],
+          ...connectedBankAccounts.map((a) => [
+            "Bank Account",
+            a.bankName + " " + a.accountType,
+            a.balance,
+            new Date().toISOString().split("T")[0],
+            "Account",
+          ]),
+          ["", "", "", "", ""],
+          ["Investments", "", "", "", ""],
+          ...investments.map((i) => [
+            "Investment",
+            i.symbol + " - " + i.name,
+            i.shares * i.currentPrice,
+            i.purchaseDate,
+            i.type,
+          ]),
+        ];
+
+        const csvContent = csvData.map((row) => row.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `finance-data-${new Date().toISOString().split("T")[0]}.csv`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+        alert("Financial data exported successfully!");
+      }
+
+      function createBackup() {
+        const backupData = {
+          transactions: sampleTransactions,
+          bankAccounts: connectedBankAccounts,
+          investments: investments,
+          settings: JSON.parse(
+            localStorage.getItem("financeAppSettings") || "{}",
+          ),
+          exportDate: new Date().toISOString(),
+        };
+
+        const backupContent = JSON.stringify(backupData, null, 2);
+        const blob = new Blob([backupContent], { type: "application/json" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `finance-backup-${new Date().toISOString().split("T")[0]}.json`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+        alert("Backup created successfully!");
+      }
+
+      // Contact Us Functions
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector("span");
+
+        answer.classList.toggle("active");
+        icon.textContent = answer.classList.contains("active") ? "▲" : "▼";
+      }
+
+      function submitFeedback() {
+        const type = document.getElementById("feedback-type").value;
+        const subject = document.getElementById("feedback-subject").value;
+        const message = document.getElementById("feedback-message").value;
+        const email = document.getElementById("feedback-email").value;
+
+        if (!subject.trim() || !message.trim()) {
+          alert("Please fill in both subject and message fields.");
+          return;
+        }
+
+        // In a real app, this would send to your backend
+        alert(
+          `Thank you for your ${type}!\n\nSubject: ${subject}\n\nWe've received your feedback and will review it shortly. ${email ? "We'll follow up at " + email + " if needed." : ""}`,
+        );
+
+        // Clear form
+        document.getElementById("feedback-subject").value = "";
+        document.getElementById("feedback-message").value = "";
+        document.getElementById("feedback-email").value = "";
+        document.getElementById("feedback-type").value = "general";
+      }
+
+      function startLiveChat() {
+        alert(
+          "Live chat would open here!\n\nIn a real app, this would connect you to a support agent or chatbot.",
+        );
+      }
+
+      function openHelpCenter() {
+        alert(
+          "Help Center would open here!\n\nThis would typically open a knowledge base with articles and tutorials.",
+        );
+      }
+
+      function openSocial(platform) {
+        const urls = {
+          twitter: "https://twitter.com/financeapp",
+          linkedin: "https://linkedin.com/company/financeapp",
+          facebook: "https://facebook.com/financeapp",
+          instagram: "https://instagram.com/financeapp",
+        };
+
+        alert(
+          `Opening ${platform.charAt(0).toUpperCase() + platform.slice(1)}...\n\nWould redirect to: ${urls[platform]}`,
+        );
+      }
     </script>
   </body>
 </html>
