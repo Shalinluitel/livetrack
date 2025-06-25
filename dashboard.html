@@ -202,6 +202,52 @@
     </style>
   </head>
   <body>
+    <!-- Notice for better user experience -->
+    <div
+      id="upgrade-notice"
+      style="
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+        padding: var(--spacing-md);
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        border-radius: var(--radius-md);
+      "
+    >
+      <strong>💡 Enhanced Version Available!</strong>
+      <span style="margin: 0 var(--spacing-md)"
+        >Access the full-featured finance dashboard with complete navigation,
+        income setup, and more.</span
+      >
+      <button
+        onclick="window.location.href='./'"
+        style="
+          background: var(--bg-primary);
+          color: var(--primary-brand);
+          border: none;
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius-sm);
+          margin-left: var(--spacing-md);
+          cursor: pointer;
+        "
+      >
+        Go to Full Dashboard
+      </button>
+      <button
+        onclick="document.getElementById('upgrade-notice').style.display='none'"
+        style="
+          background: transparent;
+          color: var(--bg-primary);
+          border: 1px solid var(--bg-primary);
+          padding: var(--spacing-sm) var(--spacing-md);
+          border-radius: var(--radius-sm);
+          margin-left: var(--spacing-sm);
+          cursor: pointer;
+        "
+      >
+        Stay Here
+      </button>
+    </div>
     <header class="dashboard-header">
       <div class="dashboard-title">Net Worth Dashboard</div>
       <div class="quick-actions">
