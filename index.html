@@ -405,14 +405,218 @@
         workEnd: "17:00",
       };
 
+      // Sample Transaction Data (sorted by date, newest first)
+      const sampleTransactions = [
+        {
+          id: 1,
+          description: "Salary Payment",
+          category: "Income",
+          amount: 4000,
+          type: "income",
+          date: "2025-06-25",
+          icon: "💰",
+        },
+        {
+          id: 2,
+          description: "Grocery Shopping",
+          category: "Food & Dining",
+          amount: -125.5,
+          type: "expense",
+          date: "2025-06-24",
+          icon: "🛒",
+        },
+        {
+          id: 3,
+          description: "Coffee Shop",
+          category: "Food & Dining",
+          amount: -4.25,
+          type: "expense",
+          date: "2025-06-24",
+          icon: "☕",
+        },
+        {
+          id: 4,
+          description: "Gas Station",
+          category: "Transportation",
+          amount: -45.0,
+          type: "expense",
+          date: "2025-06-23",
+          icon: "⛽",
+        },
+        {
+          id: 5,
+          description: "Investment Transfer",
+          category: "Investments",
+          amount: -500,
+          type: "transfer",
+          date: "2025-06-22",
+          icon: "📈",
+        },
+        {
+          id: 6,
+          description: "Freelance Project",
+          category: "Side Income",
+          amount: 750,
+          type: "income",
+          date: "2025-06-21",
+          icon: "💻",
+        },
+        {
+          id: 7,
+          description: "Netflix Subscription",
+          category: "Entertainment",
+          amount: -15.99,
+          type: "expense",
+          date: "2025-06-20",
+          icon: "📺",
+        },
+        {
+          id: 8,
+          description: "Electric Bill",
+          category: "Utilities",
+          amount: -89.45,
+          type: "expense",
+          date: "2025-06-19",
+          icon: "⚡",
+        },
+        {
+          id: 9,
+          description: "Amazon Purchase",
+          category: "Shopping",
+          amount: -67.23,
+          type: "expense",
+          date: "2025-06-18",
+          icon: "📦",
+        },
+        {
+          id: 10,
+          description: "Bank Transfer",
+          category: "Transfer",
+          amount: -200,
+          type: "transfer",
+          date: "2025-06-17",
+          icon: "🏦",
+        },
+      ];
+
+      // Navigation State
+      let currentScreen = "dashboard";
+      let currentFilter = "all";
+
       function formatCurrency(val) {
         return (
           "$" +
-          val.toLocaleString(undefined, {
+          Math.abs(val).toLocaleString(undefined, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })
         );
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        const today = new Date();
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (date.toDateString() === today.toDateString()) {
+          return "Today";
+        } else if (date.toDateString() === yesterday.toDateString()) {
+          return "Yesterday";
+        } else {
+          return date.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+        }
+      }
+
+      function switchScreen(screenName) {
+        // Hide all screens
+        document.querySelectorAll(".screen").forEach((screen) => {
+          screen.classList.remove("active");
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + "-screen");
+        if (targetScreen) {
+          targetScreen.classList.add("active");
+          currentScreen = screenName;
+        }
+
+        // Update navigation
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-screen="${screenName}"]`)
+          .classList.add("active");
+
+        // Load screen-specific content
+        if (screenName === "transactions") {
+          renderTransactions();
+        }
+      }
+
+      function filterTransactions(filterType) {
+        currentFilter = filterType;
+
+        // Update filter buttons
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-filter="${filterType}"]`)
+          .classList.add("active");
+
+        renderTransactions();
+      }
+
+      function getFilteredTransactions() {
+        if (currentFilter === "all") {
+          return sampleTransactions;
+        }
+        return sampleTransactions.filter(
+          (transaction) => transaction.type === currentFilter,
+        );
+      }
+
+      function renderTransactions() {
+        const transactionsList = document.getElementById("transactions-list");
+        const filteredTransactions = getFilteredTransactions();
+
+        if (filteredTransactions.length === 0) {
+          transactionsList.innerHTML = `
+            <div class="card">
+              <div style="text-align: center; color: var(--text-secondary);">
+                No transactions found for the selected filter.
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        transactionsList.innerHTML = filteredTransactions
+          .map(
+            (transaction) => `
+          <div class="transaction-item">
+            <div class="transaction-left">
+              <div class="transaction-icon ${transaction.type}">
+                ${transaction.icon}
+              </div>
+              <div class="transaction-details">
+                <div class="transaction-description">${transaction.description}</div>
+                <div class="transaction-category">${transaction.category}</div>
+                <div class="transaction-date">${formatDate(transaction.date)}</div>
+              </div>
+            </div>
+            <div class="transaction-amount ${transaction.type}">
+              ${transaction.amount > 0 ? "+" : ""}${formatCurrency(transaction.amount)}
+            </div>
+          </div>
+        `,
+          )
+          .join("");
       }
 
       function updateDashboard() {
@@ -460,9 +664,35 @@
           formatCurrency(earned);
       }
 
-      updateDashboard();
-      updateRealTimeIncome();
-      setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        // Navigation event listeners
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.addEventListener("click", function () {
+            const screen = this.getAttribute("data-screen");
+            if (screen === "dashboard" || screen === "transactions") {
+              switchScreen(screen);
+            } else {
+              alert(
+                `${screen.charAt(0).toUpperCase() + screen.slice(1)} screen coming soon!`,
+              );
+            }
+          });
+        });
+
+        // Filter event listeners
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const filter = this.getAttribute("data-filter");
+            filterTransactions(filter);
+          });
+        });
+
+        // Initialize dashboard
+        updateDashboard();
+        updateRealTimeIncome();
+        setInterval(updateRealTimeIncome, 1000 * 60); // update every minute
+      });
     </script>
   </body>
 </html>
