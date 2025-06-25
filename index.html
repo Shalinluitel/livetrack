@@ -680,6 +680,186 @@
       .breadcrumb-link:hover {
         text-decoration: underline;
       }
+
+      /* Income Setup Styles */
+      .income-setup-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: var(--spacing-lg);
+      }
+      .setup-step {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-2xl);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .setup-step h2 {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-lg) 0;
+      }
+      .setup-step h3 {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+      }
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-md);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+      .radio-option:hover {
+        background: var(--bg-tertiary);
+      }
+      .radio-option.selected {
+        background: var(--bg-tertiary);
+        border-color: var(--primary-brand);
+      }
+      .radio-option input[type="radio"] {
+        margin-right: var(--spacing-md);
+        accent-color: var(--primary-brand);
+      }
+      .radio-option label {
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        cursor: pointer;
+        flex: 1;
+      }
+      .radio-option .description {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        margin-top: var(--spacing-xs);
+      }
+      .form-row {
+        display: flex;
+        gap: var(--spacing-md);
+        align-items: center;
+        margin-bottom: var(--spacing-md);
+      }
+      .form-row label {
+        color: var(--text-secondary);
+        font-size: var(--font-size-base);
+        min-width: 120px;
+      }
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .checkbox-group input[type="checkbox"] {
+        accent-color: var(--primary-brand);
+      }
+      .checkbox-group label {
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        cursor: pointer;
+      }
+      .time-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .time-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+      }
+      .time-input-group label {
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+      }
+      .weekdays-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-lg);
+      }
+      .weekday-btn {
+        padding: var(--spacing-sm);
+        background: var(--bg-secondary);
+        border: 2px solid transparent;
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        cursor: pointer;
+        transition: var(--transition);
+        text-align: center;
+      }
+      .weekday-btn:hover {
+        background: var(--bg-tertiary);
+      }
+      .weekday-btn.selected {
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+        border-color: var(--primary-brand);
+      }
+      .income-summary {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+      }
+      .income-summary h4 {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-md) 0;
+      }
+      .income-summary .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-xs);
+        font-size: var(--font-size-sm);
+      }
+      .income-summary .summary-label {
+        color: var(--text-secondary);
+      }
+      .income-summary .summary-value {
+        color: var(--text-primary);
+        font-weight: var(--font-weight-medium);
+      }
+      .additional-income {
+        background: var(--bg-secondary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+      }
+      .additional-income h4 {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+        margin: 0 0 var(--spacing-md) 0;
+      }
+      .remove-income-btn {
+        background: var(--status-error);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xs);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .remove-income-btn:hover {
+        background: #dc2626;
+      }
     </style>
   </head>
   <body>
