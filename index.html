@@ -741,6 +741,612 @@
       </main>
     </div>
 
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Settings</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="switchScreen('contact-us')">
+            Contact Support
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- User Profile Section -->
+        <div class="settings-section">
+          <h3>👤 User Profile</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Name</div>
+              <div class="setting-description">Your display name</div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="text"
+                id="user-name"
+                value="Shalin Luitel"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              />
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Email</div>
+              <div class="setting-description">Your email address</div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="email"
+                id="user-email"
+                value="shalin@example.com"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Preferences -->
+        <div class="settings-section">
+          <h3>💰 Financial Preferences</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Currency</div>
+              <div class="setting-description">
+                Display currency for all amounts
+              </div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="currency-select"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="CAD">CAD (C$)</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Monthly Savings Goal</div>
+              <div class="setting-description">
+                Target percentage of income to save
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="number"
+                id="savings-goal"
+                value="20"
+                min="0"
+                max="100"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  width: 80px;
+                "
+              />
+              <span style="color: var(--text-secondary); margin-left: 8px"
+                >%</span
+              >
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Work Hours</div>
+              <div class="setting-description">
+                For real-time income calculation
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="time"
+                id="work-start"
+                value="09:00"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  margin-right: 8px;
+                "
+              />
+              to
+              <input
+                type="time"
+                id="work-end"
+                value="17:00"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  margin-left: 8px;
+                "
+              />
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Hourly Rate</div>
+              <div class="setting-description">
+                For real-time income tracking
+              </div>
+            </div>
+            <div class="setting-control">
+              <input
+                type="number"
+                id="hourly-rate"
+                value="25"
+                min="0"
+                step="0.01"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                  width: 100px;
+                "
+              />
+              <span style="color: var(--text-secondary); margin-left: 8px"
+                >$/hour</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Security & Privacy -->
+        <div class="settings-section">
+          <h3>🔒 Security & Privacy</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Two-Factor Authentication</div>
+              <div class="setting-description">
+                Add extra security to your account
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="two-factor" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Auto-Lock Timeout</div>
+              <div class="setting-description">
+                Automatically lock app after inactivity
+              </div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="auto-lock"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="5">5 minutes</option>
+                <option value="15" selected>15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="0">Never</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Biometric Login</div>
+              <div class="setting-description">
+                Use fingerprint or face ID to login
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="biometric" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-section">
+          <h3>🔔 Notifications</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Transaction Alerts</div>
+              <div class="setting-description">
+                Get notified of new transactions
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="transaction-alerts" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Monthly Reports</div>
+              <div class="setting-description">
+                Receive monthly financial summaries
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="monthly-reports" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Budget Warnings</div>
+              <div class="setting-description">
+                Alert when approaching budget limits
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="budget-warnings" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="settings-section">
+          <h3>💾 Data Management</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Auto-Sync</div>
+              <div class="setting-description">
+                Automatically sync data across devices
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="auto-sync" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Export Data</div>
+              <div class="setting-description">
+                Download your financial data
+              </div>
+            </div>
+            <div class="setting-control">
+              <button class="btn secondary" onclick="exportData()">
+                Export CSV
+              </button>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Data Backup</div>
+              <div class="setting-description">Last backup: Today, 2:15 PM</div>
+            </div>
+            <div class="setting-control">
+              <button class="btn secondary" onclick="createBackup()">
+                Backup Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Preferences -->
+        <div class="settings-section">
+          <h3>🎨 App Preferences</h3>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Theme</div>
+              <div class="setting-description">Choose your preferred theme</div>
+            </div>
+            <div class="setting-control">
+              <select
+                id="theme-select"
+                style="
+                  padding: 8px;
+                  border-radius: 6px;
+                  border: 1px solid var(--bg-tertiary);
+                  background: var(--bg-secondary);
+                  color: var(--text-primary);
+                "
+              >
+                <option value="dark" selected>Dark</option>
+                <option value="light">Light</option>
+                <option value="auto">Auto</option>
+              </select>
+            </div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-label">Compact View</div>
+              <div class="setting-description">
+                Show more data in less space
+              </div>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="compact-view" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--spacing-2xl)">
+          <button class="btn" onclick="saveSettings()">Save Changes</button>
+          <button
+            class="btn secondary"
+            onclick="resetSettings()"
+            style="margin-left: var(--spacing-md)"
+          >
+            Reset to Defaults
+          </button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Contact Us Screen -->
+    <div id="contact-us-screen" class="screen">
+      <div class="breadcrumb">
+        <span class="breadcrumb-link" onclick="switchScreen('settings')"
+          >Settings</span
+        >
+        <span>›</span>
+        <span>Contact Support</span>
+      </div>
+
+      <header class="transactions-header">
+        <div class="transactions-title">Contact Support</div>
+        <div class="quick-actions">
+          <button class="btn secondary" onclick="switchScreen('settings')">
+            ← Back to Settings
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <!-- Contact Options -->
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>Live Chat</h3>
+            <p>Get instant help from our support team</p>
+            <a href="#" class="contact-link" onclick="startLiveChat()"
+              >Start Chat</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email Support</h3>
+            <p>Send us an email and we'll respond within 24 hours</p>
+            <a href="mailto:support@financeapp.com" class="contact-link"
+              >support@financeapp.com</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📚</div>
+            <h3>Help Center</h3>
+            <p>Browse articles and tutorials</p>
+            <a href="#" class="contact-link" onclick="openHelpCenter()"
+              >Browse Articles</a
+            >
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Phone Support</h3>
+            <p>Call us Monday-Friday, 9 AM - 6 PM EST</p>
+            <a href="tel:+1-800-FINANCE" class="contact-link">1-800-FINANCE</a>
+          </div>
+        </div>
+
+        <!-- Frequently Asked Questions -->
+        <div class="section-title">Frequently Asked Questions</div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How do I connect my bank account securely?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            We use Plaid, a trusted financial technology company, to securely
+            connect your bank accounts. Your login credentials are encrypted and
+            never stored on our servers. Plaid is used by thousands of financial
+            apps and is bank-level secure.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Is my financial data safe and private?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes, absolutely. We use 256-bit SSL encryption to protect your data
+            in transit and at rest. We never sell your personal information and
+            follow strict privacy guidelines. Your data is only used to provide
+            you with financial insights.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            How often is my account data updated?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Your account data is automatically updated multiple times per day.
+            Real-time income tracking updates every minute during your work
+            hours, and bank account balances are refreshed every few hours.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            Can I export my financial data?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            Yes, you can export all your financial data in CSV format from the
+            Settings page. This includes transactions, account balances, and
+            investment data. You can also create manual backups anytime.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            What investment types can I track?
+            <span>▼</span>
+          </div>
+          <div class="faq-answer">
+            You can track stocks, ETFs, mutual funds, bonds, cryptocurrencies,
+            real estate investments, and commodities. Each investment type shows
+            current value, gains/losses, and performance over time.
+          </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="section-title">Send Us Feedback</div>
+        <div class="feedback-form">
+          <h3>We'd love to hear from you!</h3>
+          <p
+            style="
+              color: var(--text-secondary);
+              margin-bottom: var(--spacing-lg);
+            "
+          >
+            Help us improve by sharing your thoughts, reporting bugs, or
+            suggesting new features.
+          </p>
+
+          <div class="form-group">
+            <label for="feedback-type">Feedback Type</label>
+            <select id="feedback-type">
+              <option value="general">General Feedback</option>
+              <option value="bug">Bug Report</option>
+              <option value="feature">Feature Request</option>
+              <option value="support">Support Question</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-subject">Subject</label>
+            <input
+              type="text"
+              id="feedback-subject"
+              placeholder="Brief description of your feedback"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-message">Message</label>
+            <textarea
+              id="feedback-message"
+              class="textarea"
+              placeholder="Please provide details about your feedback, bug report, or feature request..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-email">Your Email (optional)</label>
+            <input
+              type="email"
+              id="feedback-email"
+              placeholder="We'll use this to follow up if needed"
+            />
+          </div>
+
+          <button class="btn" onclick="submitFeedback()">Send Feedback</button>
+        </div>
+
+        <!-- Company Information -->
+        <div class="section-title">About FinanceApp</div>
+        <div class="card">
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            <strong style="color: var(--text-primary)">FinanceApp</strong> is
+            your comprehensive personal finance companion, designed to help you
+            track expenses, manage investments, and achieve your financial
+            goals. We're committed to providing secure, intuitive, and powerful
+            financial tools for everyone.
+          </p>
+          <br />
+          <p style="color: var(--text-secondary); line-height: 1.6">
+            <strong style="color: var(--text-primary)">Address:</strong><br />
+            123 Finance Street, Suite 456<br />
+            New York, NY 10001<br /><br />
+
+            <strong style="color: var(--text-primary)">Business Hours:</strong
+            ><br />
+            Monday - Friday: 9:00 AM - 6:00 PM EST<br />
+            Saturday: 10:00 AM - 2:00 PM EST<br />
+            Sunday: Closed
+          </p>
+          <br />
+          <div
+            style="
+              display: flex;
+              gap: var(--spacing-lg);
+              justify-content: center;
+            "
+          >
+            <a href="#" class="contact-link" onclick="openSocial('twitter')"
+              >🐦 Twitter</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('linkedin')"
+              >💼 LinkedIn</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('facebook')"
+              >📘 Facebook</a
+            >
+            <a href="#" class="contact-link" onclick="openSocial('instagram')"
+              >📷 Instagram</a
+            >
+          </div>
+        </div>
+      </main>
+    </div>
+
     <!-- Transactions Screen -->
     <div id="transactions-screen" class="screen">
       <header class="transactions-header">
