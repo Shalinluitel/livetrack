@@ -304,60 +304,86 @@
     </style>
   </head>
   <body>
-    <header class="dashboard-header">
-      <div class="dashboard-title">Net Worth Dashboard</div>
-      <div class="quick-actions">
-        <button class="btn" onclick="alert('Add Transaction')">
-          + Add Transaction
-        </button>
-        <button class="btn secondary" onclick="alert('View Reports')">
-          View Reports
-        </button>
-      </div>
-    </header>
-    <main>
-      <div class="dashboard-grid">
-        <div class="card">
-          <div class="card-title">Net Worth</div>
-          <div class="card-value" id="netWorth">$0</div>
-          <div class="card-sub">Assets - Liabilities</div>
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen active">
+      <header class="dashboard-header">
+        <div class="dashboard-title">Net Worth Dashboard</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="alert('Add Transaction')">
+            + Add Transaction
+          </button>
+          <button class="btn secondary" onclick="alert('View Reports')">
+            View Reports
+          </button>
         </div>
-        <div class="card">
-          <div class="card-title">Real-Time Income</div>
-          <div class="income-real-time" id="realTimeIncome">$0.00</div>
-          <div class="card-sub">Earnings since 9:00 AM</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Monthly Savings Rate</div>
-          <div class="card-value" id="savingsRate">0%</div>
-          <div class="progress-bar">
-            <div
-              class="progress-bar-fill"
-              id="savingsProgress"
-              style="width: 0%"
-            ></div>
+      </header>
+      <main>
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-title">Net Worth</div>
+            <div class="card-value" id="netWorth">$0</div>
+            <div class="card-sub">Assets - Liabilities</div>
           </div>
-          <div class="card-sub">Goal: 20%</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Total Assets</div>
-          <div class="card-value" id="assets">$0</div>
-          <div class="card-sub">Bank, Investments, Cash</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Total Liabilities</div>
-          <div class="card-value" id="liabilities">$0</div>
-          <div class="card-sub">Loans, Credit Cards</div>
-        </div>
-        <div class="card">
-          <div class="card-title">Spending This Month</div>
-          <div class="card-value" id="spending">$0</div>
-          <div class="card-sub">
-            Compared to last month: <span id="spendingChange">0%</span>
+          <div class="card">
+            <div class="card-title">Real-Time Income</div>
+            <div class="income-real-time" id="realTimeIncome">$0.00</div>
+            <div class="card-sub">Earnings since 9:00 AM</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Monthly Savings Rate</div>
+            <div class="card-value" id="savingsRate">0%</div>
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                id="savingsProgress"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="card-sub">Goal: 20%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Assets</div>
+            <div class="card-value" id="assets">$0</div>
+            <div class="card-sub">Bank, Investments, Cash</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Liabilities</div>
+            <div class="card-value" id="liabilities">$0</div>
+            <div class="card-sub">Loans, Credit Cards</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Spending This Month</div>
+            <div class="card-value" id="spending">$0</div>
+            <div class="card-sub">
+              Compared to last month: <span id="spendingChange">0%</span>
+            </div>
           </div>
         </div>
+      </main>
+    </div>
+
+    <!-- Transactions Screen -->
+    <div id="transactions-screen" class="screen">
+      <header class="transactions-header">
+        <div class="transactions-title">Recent Transactions</div>
+        <div class="quick-actions">
+          <button class="btn" onclick="alert('Add Transaction')">
+            + Add Transaction
+          </button>
+        </div>
+      </header>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="income">Income</button>
+        <button class="filter-btn" data-filter="expense">Expenses</button>
+        <button class="filter-btn" data-filter="transfer">Transfers</button>
       </div>
-    </main>
+      <main>
+        <div id="transactions-list">
+          <!-- Transactions will be dynamically populated here -->
+        </div>
+      </main>
+    </div>
     <nav class="nav-bar">
       <div class="nav-item active">Dashboard</div>
       <div class="nav-item">Transactions</div>
