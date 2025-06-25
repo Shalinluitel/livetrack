@@ -301,6 +301,216 @@
         background: var(--primary-brand-secondary);
         color: var(--bg-primary);
       }
+      .bank-account-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .bank-account-info {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+      }
+      .bank-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        background: var(--primary-brand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        color: var(--bg-primary);
+        font-weight: var(--font-weight-bold);
+      }
+      .bank-details h3 {
+        margin: 0 0 var(--spacing-xs) 0;
+        font-size: var(--font-size-lg);
+        color: var(--text-primary);
+      }
+      .bank-details p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .bank-balance {
+        text-align: right;
+      }
+      .balance-amount {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--primary-brand);
+        margin: 0;
+      }
+      .sync-status {
+        font-size: var(--font-size-sm);
+        color: var(--status-success);
+        margin: var(--spacing-xs) 0 0 0;
+      }
+      .connect-bank-card {
+        background: var(--bg-card);
+        border: 2px dashed var(--bg-tertiary);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-4xl);
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+      .connect-bank-card:hover {
+        border-color: var(--primary-brand);
+        background: rgba(74, 222, 128, 0.05);
+      }
+      .connect-icon {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--spacing-md);
+      }
+      .plaid-search {
+        width: 100%;
+        padding: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-lg);
+      }
+      .bank-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+      }
+      .bank-option {
+        background: var(--bg-card);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .bank-option:hover {
+        border-color: var(--primary-brand);
+        box-shadow: var(--shadow-md);
+      }
+      .investment-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-2xl);
+      }
+      .investment-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+      }
+      .investment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-2xl);
+      }
+      .add-investment-form {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        display: none;
+      }
+      .add-investment-form.active {
+        display: block;
+      }
+      .form-group {
+        margin-bottom: var(--spacing-lg);
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-secondary);
+        font-weight: var(--font-weight-medium);
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: var(--spacing-md);
+        border: 1px solid var(--bg-tertiary);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        box-sizing: border-box;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+      }
+      .investment-item {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-md);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-md);
+      }
+      .investment-details {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+      }
+      .investment-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-lg);
+        background: var(--primary-brand);
+        color: var(--bg-primary);
+      }
+      .investment-info h4 {
+        margin: 0 0 var(--spacing-xs) 0;
+        color: var(--text-primary);
+      }
+      .investment-info p {
+        margin: 0;
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+      }
+      .investment-performance {
+        text-align: right;
+      }
+      .performance-value {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-bold);
+        margin: 0;
+      }
+      .performance-change {
+        font-size: var(--font-size-sm);
+        margin: var(--spacing-xs) 0 0 0;
+      }
+      .performance-gain {
+        color: var(--status-success);
+      }
+      .performance-loss {
+        color: var(--status-error);
+      }
+      .section-title {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-lg);
+      }
     </style>
   </head>
   <body>
