@@ -1079,6 +1079,236 @@
           .join("");
       }
 
+      // Bank Accounts Functions
+      function toggleConnectBank() {
+        const interface = document.getElementById("connect-bank-interface");
+        interface.style.display =
+          interface.style.display === "none" ? "block" : "none";
+      }
+
+      function connectBank(bankName) {
+        // Simulate bank connection process
+        alert(
+          `Connecting to ${bankName}...\n\nThis would normally redirect to Plaid for secure authentication.`,
+        );
+
+        // Simulate successful connection
+        setTimeout(() => {
+          const newAccount = {
+            id: connectedBankAccounts.length + 1,
+            bankName: bankName,
+            accountType: "Checking",
+            accountNumber: `****${Math.floor(Math.random() * 9000) + 1000}`,
+            balance: Math.floor(Math.random() * 10000) + 1000,
+            lastSync: "Just now",
+            logo: getBankLogo(bankName),
+          };
+
+          connectedBankAccounts.push(newAccount);
+          renderBankAccounts();
+          toggleConnectBank();
+
+          // Update dashboard data with new account
+          updateDashboardWithBankData();
+        }, 1500);
+      }
+
+      function getBankLogo(bankName) {
+        const logos = {
+          "Chase Bank": "🏦",
+          "Bank of America": "🏛️",
+          "Wells Fargo": "🐎",
+          "Capital One": "💳",
+          "Citi Bank": "🏢",
+          "US Bank": "🇺🇸",
+        };
+        return logos[bankName] || "🏦";
+      }
+
+      function renderBankAccounts() {
+        const connectedAccountsDiv =
+          document.getElementById("connected-accounts");
+        const noAccountsDiv = document.getElementById("no-accounts");
+
+        if (connectedBankAccounts.length === 0) {
+          connectedAccountsDiv.style.display = "none";
+          noAccountsDiv.style.display = "block";
+          return;
+        }
+
+        connectedAccountsDiv.style.display = "block";
+        noAccountsDiv.style.display = "none";
+
+        connectedAccountsDiv.innerHTML = connectedBankAccounts
+          .map(
+            (account) => `
+          <div class="bank-account-card">
+            <div class="bank-account-info">
+              <div class="bank-logo">${account.logo}</div>
+              <div class="bank-details">
+                <h3>${account.bankName}</h3>
+                <p>${account.accountType} ${account.accountNumber}</p>
+              </div>
+            </div>
+            <div class="bank-balance">
+              <div class="balance-amount">${formatCurrency(account.balance)}</div>
+              <div class="sync-status">✓ Synced ${account.lastSync}</div>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      function updateDashboardWithBankData() {
+        // Calculate total from connected accounts
+        const totalBankBalance = connectedBankAccounts.reduce(
+          (sum, account) => sum + account.balance,
+          0,
+        );
+
+        // Update assets with bank data
+        sampleData.assets = 25000 + totalBankBalance;
+
+        // Trigger dashboard update
+        if (currentScreen === "dashboard") {
+          updateDashboard();
+        }
+      }
+
+      // Investment Functions
+      function toggleAddInvestment() {
+        const form = document.getElementById("add-investment-form");
+        form.classList.toggle("active");
+
+        if (form.classList.contains("active")) {
+          document.getElementById("investment-date").value = new Date()
+            .toISOString()
+            .split("T")[0];
+        }
+      }
+
+      function addInvestment() {
+        const symbol = document.getElementById("investment-symbol").value;
+        const type = document.getElementById("investment-type").value;
+        const shares = parseFloat(
+          document.getElementById("investment-shares").value,
+        );
+        const price = parseFloat(
+          document.getElementById("investment-price").value,
+        );
+        const date = document.getElementById("investment-date").value;
+
+        if (!symbol || !shares || !price || !date) {
+          alert("Please fill in all fields");
+          return;
+        }
+
+        const newInvestment = {
+          id: investments.length + 1,
+          symbol: symbol.toUpperCase(),
+          name: symbol.toUpperCase(),
+          type: type,
+          shares: shares,
+          purchasePrice: price,
+          currentPrice: price + (Math.random() * 20 - 10), // Simulate current price
+          purchaseDate: date,
+          icon: getInvestmentIcon(type),
+        };
+
+        investments.push(newInvestment);
+        renderInvestments();
+        toggleAddInvestment();
+
+        // Clear form
+        document.getElementById("investment-symbol").value = "";
+        document.getElementById("investment-shares").value = "";
+        document.getElementById("investment-price").value = "";
+      }
+
+      function getInvestmentIcon(type) {
+        const icons = {
+          stock: "📈",
+          etf: "📊",
+          crypto: "₿",
+          bond: "🏛️",
+          "real-estate": "🏠",
+          commodity: "🥇",
+        };
+        return icons[type] || "📈";
+      }
+
+      function renderInvestments() {
+        updateInvestmentSummary();
+
+        const investmentsList = document.getElementById("investments-list");
+
+        if (investments.length === 0) {
+          investmentsList.innerHTML = `
+            <div class="card" style="text-align: center; padding: var(--spacing-4xl);">
+              <div style="font-size: var(--font-size-4xl); margin-bottom: var(--spacing-lg);">📈</div>
+              <h3>Start Your Investment Journey</h3>
+              <p style="color: var(--text-secondary);">Add your first investment to track your portfolio performance.</p>
+            </div>
+          `;
+          return;
+        }
+
+        investmentsList.innerHTML = investments
+          .map((investment) => {
+            const totalValue = investment.shares * investment.currentPrice;
+            const totalCost = investment.shares * investment.purchasePrice;
+            const gainLoss = totalValue - totalCost;
+            const gainLossPercent = (gainLoss / totalCost) * 100;
+            const isGain = gainLoss >= 0;
+
+            return `
+            <div class="investment-item">
+              <div class="investment-details">
+                <div class="investment-icon">${investment.icon}</div>
+                <div class="investment-info">
+                  <h4>${investment.symbol}</h4>
+                  <p>${investment.name} • ${investment.shares} shares</p>
+                  <p>Purchased: ${formatDate(investment.purchaseDate)}</p>
+                </div>
+              </div>
+              <div class="investment-performance">
+                <div class="performance-value">${formatCurrency(totalValue)}</div>
+                <div class="performance-change ${isGain ? "performance-gain" : "performance-loss"}">
+                  ${isGain ? "+" : ""}${formatCurrency(gainLoss)} (${gainLossPercent.toFixed(2)}%)
+                </div>
+              </div>
+            </div>
+          `;
+          })
+          .join("");
+      }
+
+      function updateInvestmentSummary() {
+        const totalValue = investments.reduce(
+          (sum, inv) => sum + inv.shares * inv.currentPrice,
+          0,
+        );
+        const totalCost = investments.reduce(
+          (sum, inv) => sum + inv.shares * inv.purchasePrice,
+          0,
+        );
+        const totalGainLoss = totalValue - totalCost;
+        const uniqueTypes = new Set(investments.map((inv) => inv.type)).size;
+
+        document.getElementById("portfolio-value").textContent =
+          formatCurrency(totalValue);
+
+        const changeElement = document.getElementById("portfolio-change");
+        changeElement.textContent =
+          (totalGainLoss >= 0 ? "+" : "") + formatCurrency(totalGainLoss);
+        changeElement.style.color =
+          totalGainLoss >= 0 ? "var(--status-success)" : "var(--status-error)";
+
+        document.getElementById("portfolio-diversity").textContent =
+          uniqueTypes;
+      }
+
       function updateDashboard() {
         // Net Worth
         const netWorth = sampleData.assets - sampleData.liabilities;
