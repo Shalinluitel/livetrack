@@ -2816,6 +2816,451 @@
           `Opening ${platform.charAt(0).toUpperCase() + platform.slice(1)}...\n\nWould redirect to: ${urls[platform]}`,
         );
       }
+
+      // Income Setup Functions
+      let incomeSettings = {
+        type: null, // 'hourly', 'monthly', 'yearly'
+        amount: 0,
+        isTaxed: false,
+        taxRate: 0,
+        workStart: "09:00",
+        workEnd: "17:00",
+        workDays: [1, 2, 3, 4, 5], // Monday to Friday
+        additionalIncomes: [],
+      };
+
+      let additionalIncomeCounter = 0;
+
+      function selectIncomeType(type) {
+        // Update radio selection
+        document.querySelectorAll(".radio-option").forEach((option) => {
+          option.classList.remove("selected");
+        });
+        event.target.closest(".radio-option").classList.add("selected");
+
+        // Update radio input
+        document.getElementById(type).checked = true;
+
+        incomeSettings.type = type;
+
+        // Show amount input section
+        const amountSection = document.getElementById("income-amount-section");
+        const amountLabel = document.getElementById("income-amount-label");
+
+        amountSection.style.display = "block";
+
+        switch (type) {
+          case "hourly":
+            amountLabel.textContent = "Hourly Rate ($):";
+            document.getElementById("income-amount").placeholder = "25.00";
+            break;
+          case "monthly":
+            amountLabel.textContent = "Monthly Salary ($):";
+            document.getElementById("income-amount").placeholder = "5000.00";
+            break;
+          case "yearly":
+            amountLabel.textContent = "Annual Salary ($):";
+            document.getElementById("income-amount").placeholder = "60000.00";
+            break;
+        }
+
+        updateIncomeSummary();
+      }
+
+      function toggleTaxSection() {
+        const isTaxed = document.getElementById("is-taxed").checked;
+        const taxSection = document.getElementById("tax-section");
+
+        incomeSettings.isTaxed = isTaxed;
+        taxSection.style.display = isTaxed ? "block" : "none";
+
+        if (!isTaxed) {
+          incomeSettings.taxRate = 0;
+          document.getElementById("tax-rate").value = "";
+        }
+
+        updateIncomeSummary();
+      }
+
+      function toggleWorkDay(dayIndex) {
+        const dayBtn = document.querySelector(`[data-day="${dayIndex}"]`);
+
+        if (incomeSettings.workDays.includes(dayIndex)) {
+          // Remove day
+          incomeSettings.workDays = incomeSettings.workDays.filter(
+            (d) => d !== dayIndex,
+          );
+          dayBtn.classList.remove("selected");
+        } else {
+          // Add day
+          incomeSettings.workDays.push(dayIndex);
+          dayBtn.classList.add("selected");
+        }
+
+        updateIncomeSummary();
+      }
+
+      function addAdditionalIncome() {
+        additionalIncomeCounter++;
+        const container = document.getElementById(
+          "additional-incomes-container",
+        );
+
+        const incomeDiv = document.createElement("div");
+        incomeDiv.className = "additional-income";
+        incomeDiv.id = `additional-income-${additionalIncomeCounter}`;
+
+        incomeDiv.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+            <h4>Income Source #${additionalIncomeCounter}</h4>
+            <button class="remove-income-btn" onclick="removeAdditionalIncome(${additionalIncomeCounter})">Remove</button>
+          </div>
+
+          <div class="form-row">
+            <label>Description:</label>
+            <input type="text" id="desc-${additionalIncomeCounter}" placeholder="e.g., Freelance work, Dividends, etc.">
+          </div>
+
+          <div class="form-row">
+            <label>Amount ($):</label>
+            <input type="number" id="amount-${additionalIncomeCounter}" placeholder="0.00" step="0.01" min="0">
+          </div>
+
+          <div class="radio-group">
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'one-time')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="one-time">
+              <label>
+                <div>One-time Income</div>
+                <div class="description">Received once (e.g., bonus, gift)</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'weekly')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="weekly">
+              <label>
+                <div>Weekly Recurring</div>
+                <div class="description">Received every week</div>
+              </label>
+            </div>
+            <div class="radio-option" onclick="selectAdditionalIncomeType(${additionalIncomeCounter}, 'monthly')">
+              <input type="radio" name="additional-type-${additionalIncomeCounter}" value="monthly">
+              <label>
+                <div>Monthly Recurring</div>
+                <div class="description">Received every month</div>
+              </label>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(incomeDiv);
+        updateIncomeSummary();
+      }
+
+      function removeAdditionalIncome(id) {
+        const incomeDiv = document.getElementById(`additional-income-${id}`);
+        if (incomeDiv) {
+          incomeDiv.remove();
+          updateIncomeSummary();
+        }
+      }
+
+      function selectAdditionalIncomeType(incomeId, type) {
+        const container = document.getElementById(
+          `additional-income-${incomeId}`,
+        );
+        const radioOptions = container.querySelectorAll(".radio-option");
+
+        radioOptions.forEach((option) => option.classList.remove("selected"));
+        event.target.closest(".radio-option").classList.add("selected");
+
+        // Update the radio input
+        const radioInput = event.target
+          .closest(".radio-option")
+          .querySelector('input[type="radio"]');
+        radioInput.checked = true;
+
+        updateIncomeSummary();
+      }
+
+      function updateIncomeSummary() {
+        // Get current values
+        const amount = parseFloat(
+          document.getElementById("income-amount")?.value || 0,
+        );
+        const taxRate = parseFloat(
+          document.getElementById("tax-rate")?.value || 0,
+        );
+        const workStart =
+          document.getElementById("work-start")?.value || "09:00";
+        const workEnd = document.getElementById("work-end")?.value || "17:00";
+
+        // Update settings
+        incomeSettings.amount = amount;
+        incomeSettings.taxRate = taxRate;
+        incomeSettings.workStart = workStart;
+        incomeSettings.workEnd = workEnd;
+
+        // Calculate values
+        let grossHourlyRate = 0;
+        let grossIncome = amount;
+
+        if (incomeSettings.type === "hourly") {
+          grossHourlyRate = amount;
+        } else if (incomeSettings.type === "monthly") {
+          // Assume 160 working hours per month (8 hours * 5 days * 4 weeks)
+          const hoursPerMonth = incomeSettings.workDays.length * 4 * 8;
+          grossHourlyRate = amount / hoursPerMonth;
+        } else if (incomeSettings.type === "yearly") {
+          // Assume 52 weeks, working days per week * 8 hours
+          const hoursPerYear = incomeSettings.workDays.length * 52 * 8;
+          grossHourlyRate = amount / hoursPerYear;
+          grossIncome = amount / 12; // Monthly equivalent
+        }
+
+        const netHourlyRate = grossHourlyRate * (1 - taxRate / 100);
+
+        // Update summary display
+        document.getElementById("summary-income-type").textContent =
+          incomeSettings.type
+            ? incomeSettings.type.charAt(0).toUpperCase() +
+              incomeSettings.type.slice(1)
+            : "Not set";
+
+        document.getElementById("summary-gross-income").textContent =
+          incomeSettings.type === "yearly"
+            ? formatCurrency(amount) + "/year"
+            : incomeSettings.type === "monthly"
+              ? formatCurrency(amount) + "/month"
+              : formatCurrency(amount) + "/hour";
+
+        document.getElementById("summary-tax-rate").textContent = taxRate + "%";
+        document.getElementById("summary-net-hourly").textContent =
+          formatCurrency(netHourlyRate) + "/hour";
+
+        // Work schedule summary
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const workDayNames = incomeSettings.workDays
+          .map((d) => dayNames[d])
+          .join(", ");
+        document.getElementById("summary-schedule").textContent =
+          `${workStart} - ${workEnd}, ${workDayNames}`;
+
+        // Additional income sources count
+        const additionalCount =
+          document.querySelectorAll(".additional-income").length;
+        document.getElementById("summary-additional").textContent =
+          additionalCount;
+      }
+
+      function saveIncomeSettings() {
+        // Validate required fields
+        if (!incomeSettings.type) {
+          alert("Please select an income type");
+          return;
+        }
+
+        const amount = parseFloat(
+          document.getElementById("income-amount")?.value || 0,
+        );
+        if (amount <= 0) {
+          alert("Please enter a valid income amount");
+          return;
+        }
+
+        // Update settings with current form values
+        incomeSettings.amount = amount;
+        incomeSettings.taxRate = parseFloat(
+          document.getElementById("tax-rate")?.value || 0,
+        );
+        incomeSettings.workStart = document.getElementById("work-start").value;
+        incomeSettings.workEnd = document.getElementById("work-end").value;
+
+        // Collect additional income sources
+        incomeSettings.additionalIncomes = [];
+        document.querySelectorAll(".additional-income").forEach((incomeDiv) => {
+          const id = incomeDiv.id.split("-")[2];
+          const description =
+            document.getElementById(`desc-${id}`)?.value || "";
+          const amount = parseFloat(
+            document.getElementById(`amount-${id}`)?.value || 0,
+          );
+          const typeInput = incomeDiv.querySelector(
+            'input[type="radio"]:checked',
+          );
+
+          if (description && amount > 0 && typeInput) {
+            incomeSettings.additionalIncomes.push({
+              description,
+              amount,
+              type: typeInput.value,
+            });
+          }
+        });
+
+        // Save to localStorage
+        localStorage.setItem("incomeSettings", JSON.stringify(incomeSettings));
+
+        alert("Income settings saved successfully!");
+        switchScreen("dashboard");
+
+        // Update the real-time income calculation
+        updateRealTimeIncome();
+      }
+
+      function loadIncomeSettings() {
+        const saved = localStorage.getItem("incomeSettings");
+        if (saved) {
+          incomeSettings = JSON.parse(saved);
+
+          // Update form with saved values
+          if (incomeSettings.type) {
+            document.getElementById(incomeSettings.type).checked = true;
+            document
+              .querySelector(`#${incomeSettings.type}`)
+              .closest(".radio-option")
+              .classList.add("selected");
+
+            // Show and populate amount section
+            document.getElementById("income-amount-section").style.display =
+              "block";
+            document.getElementById("income-amount").value =
+              incomeSettings.amount;
+          }
+
+          document.getElementById("is-taxed").checked = incomeSettings.isTaxed;
+          if (incomeSettings.isTaxed) {
+            document.getElementById("tax-section").style.display = "block";
+            document.getElementById("tax-rate").value = incomeSettings.taxRate;
+          }
+
+          document.getElementById("work-start").value =
+            incomeSettings.workStart;
+          document.getElementById("work-end").value = incomeSettings.workEnd;
+
+          // Update work days
+          document.querySelectorAll(".weekday-btn").forEach((btn) => {
+            const day = parseInt(btn.dataset.day);
+            if (incomeSettings.workDays.includes(day)) {
+              btn.classList.add("selected");
+            } else {
+              btn.classList.remove("selected");
+            }
+          });
+
+          updateIncomeSummary();
+        }
+      }
+
+      // Update the existing updateRealTimeIncome function to use saved settings
+      function updateRealTimeIncome() {
+        const saved = localStorage.getItem("incomeSettings");
+        let settings = saved ? JSON.parse(saved) : null;
+
+        if (!settings || !settings.type || !settings.amount) {
+          // Fall back to sample data if no settings saved
+          settings = {
+            type: "hourly",
+            amount: 10,
+            isTaxed: true,
+            taxRate: 25,
+            workStart: "09:00",
+            workEnd: "17:00",
+            workDays: [1, 2, 3, 4, 5],
+          };
+        }
+
+        const now = new Date();
+        const today = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+        // Check if today is a work day
+        if (!settings.workDays.includes(today)) {
+          document.getElementById("realTimeIncome").textContent = "$0.00";
+          return;
+        }
+
+        const todayStr = now.toISOString().split("T")[0];
+        const start = new Date(todayStr + "T" + settings.workStart + ":00");
+        const end = new Date(todayStr + "T" + settings.workEnd + ":00");
+
+        let earned = 0;
+
+        if (now > start) {
+          const elapsed = Math.min(now, end) - start;
+          const hoursWorked = Math.max(0, elapsed / (1000 * 60 * 60));
+
+          // Calculate hourly rate based on income type
+          let hourlyRate = 0;
+          if (settings.type === "hourly") {
+            hourlyRate = settings.amount;
+          } else if (settings.type === "monthly") {
+            const hoursPerMonth = settings.workDays.length * 4 * 8;
+            hourlyRate = settings.amount / hoursPerMonth;
+          } else if (settings.type === "yearly") {
+            const hoursPerYear = settings.workDays.length * 52 * 8;
+            hourlyRate = settings.amount / hoursPerYear;
+          }
+
+          // Apply tax if applicable
+          if (settings.isTaxed) {
+            hourlyRate = hourlyRate * (1 - settings.taxRate / 100);
+          }
+
+          earned = hoursWorked * hourlyRate;
+        }
+
+        document.getElementById("realTimeIncome").textContent =
+          formatCurrency(earned);
+      }
+
+      // Load income settings when income setup screen is accessed
+      function switchScreen(screenName) {
+        // Hide all screens
+        document.querySelectorAll(".screen").forEach((screen) => {
+          screen.classList.remove("active");
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenName + "-screen");
+        if (targetScreen) {
+          targetScreen.classList.add("active");
+          currentScreen = screenName;
+        }
+
+        // Update navigation
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`[data-screen="${screenName}"]`)
+          ?.classList.add("active");
+
+        // Load screen-specific content
+        if (screenName === "transactions") {
+          renderTransactions();
+        } else if (screenName === "bank-accounts") {
+          renderBankAccounts();
+        } else if (screenName === "investments") {
+          renderInvestments();
+        } else if (screenName === "income-setup") {
+          loadIncomeSettings();
+        }
+      }
+
+      // Add event listeners for income setup form inputs
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add existing event listeners...
+
+        // Income amount input listener
+        document.addEventListener("input", function (e) {
+          if (
+            e.target.id === "income-amount" ||
+            e.target.id === "tax-rate" ||
+            e.target.id === "work-start" ||
+            e.target.id === "work-end"
+          ) {
+            updateIncomeSummary();
+          }
+        });
+      });
     </script>
   </body>
 </html>
